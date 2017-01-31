@@ -19,8 +19,6 @@ const assert = require('assert')
 const uuid = require('uuid')
 const path = require('path')
 const fs = require('fs')
-const app = process.argv[2]
-const title = process.argv[3]
 
 const screenshotsDir = argv.screenshotsDir || 'screenshots'
 const sessionId = argv.live ? uuid.v4() : '.'
@@ -111,7 +109,7 @@ function getList(app, title, filterTitle, live) {
         })
 }
 
-DEBUG(123)
+// process.on('unhandledRejection', console.error)
 
 const fn = argv.capture ? getWindow : getList
 const exec = fn.bind(null, argv.app, argv.title, !argv.all, argv.live)
