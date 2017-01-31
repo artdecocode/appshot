@@ -1,18 +1,19 @@
 {
-  "name": "browsershot",
+  "name": "appshot",
   "version": "1.0.0",
-  "description": " A node.js tool to capture browser screen on macOS",
+  "description": " A command line tool in Node.js to switch beteen apps' windows, take screenshots, and ...",
   "main": "main.js",
   "scripts": {
     "test": "zoroaster test",
     "python": "python etc/run.py",
+    "activechrome": "python etc/active.py --app Chrome",
     "chrome": "node -harmony-async-await run Chrome file"
   },
   "keywords": [
-    "browsershot"
+    "app", "macOS", "screenshot", "screenshots"
   ],
   "author": "Anton <anton@sobes.io>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "debug": "^2.6.0",
     "log-rotate": "^0.2.7",
