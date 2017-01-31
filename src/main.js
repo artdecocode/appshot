@@ -11,7 +11,7 @@ const pyPath = path.join(__dirname, 'etc', 'run.py');
 function rotateLogFile(logFile) {
     return new Promise(
         (resolve, reject) => {
-            rotate(logFile, { compress: true }, (err) => {
+            rotate(logFile, { compress: false }, (err) => {
                 if (err) return reject(err)
                 return resolve(logFile)
             })
