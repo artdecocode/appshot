@@ -1,0 +1,27 @@
+{
+  "name": "browsershot",
+  "version": "1.0.0",
+  "description": " A node.js tool to capture browser screen on macOS",
+  "main": "main.js",
+  "scripts": {
+    "test": "zoroaster test",
+    "python": "python etc/run.py",
+    "chrome": "node -harmony-async-await run Chrome file"
+  },
+  "keywords": [
+    "browsershot"
+  ],
+  "author": "Anton <anton@sobes.io>",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^2.6.0",
+    "log-rotate": "^0.2.7",
+    "uuid": "^3.0.1",
+    "yargs": "^6.6.0"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.27.2",
+    "selenium-webdriver": "^3.0.1",
+    "zoroaster": "^0.2.0"
+  }
+}
