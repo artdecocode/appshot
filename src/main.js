@@ -33,30 +33,48 @@ const getLogWriteStreams = () => {
             ))
 }
 
+function createWritable(data, title) {
+    const writable = new Writable()
+    writable._write = (chunk, encoding, callback) => {
+        data.push(String(chunk))
+        callback(null)
+    }
+    return writable
+}
+
 function spawnPython(resolve, reject, logStreams) {
     assert(Array.isArray(logStreams) && logStreams.length === 2)
     const python = cp.spawn('python', [pyPath])
     const data = []
+    const errData = []
     
     python.stdout.pipe(logStreams[0])
     python.stderr.pipe(logStreams[1])
     
-    const writable = new Writable()
-    writable._write = (chunk, encoding, callback) => {
-        debug('>>> ========')
-        debug(String(chunk).trim())
-        debug('pushing chunk >>>')
-        data.push(String(chunk).trim())
-        callback(null)
-    }
+    const stdoutDrain = createWritable(data, 'stdput')
+    const stderrDrain = createWritable(errData, 'stderr')
 
     python.stdout
-        .pipe(writable)
+        .pipe(stdoutDrain)
+
+    python.stderr
+        .pipe(stderrDrain)
     
     python.on('exit', (code) => {
-        if (code !== 0) return reject(new Error(`Process exited with code ${code}`))
-        return resolve(data.join())
+        if (code !== 0) {
+            return reject(getPythonExitError(errData, code))
+        }
+        return resolve(data.join().trim())
     })
+}
+
+function getPythonExitError(errData, code) {
+    const title = `Process exited with code ${code}`
+    const message = errData.join().trim()
+    const error = new Error()
+    error.title = title
+    error.message = message
+    return error
 }
 
 function getWindowsWithPython() {
