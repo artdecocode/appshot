@@ -11,16 +11,16 @@ const pyPath = path.join(__dirname, 'etc', 'run.py');
 function rotateLogFile(logFile) {
     return new Promise(
         (resolve, reject) => {
-            rotate(logFile, (err) => {
-                if (err) return reject()
+            rotate(logFile, { compress: true }, (err) => {
+                if (err) return reject(err)
                 return resolve(logFile)
             })
         }
     )
 }
 
-const logfile = path.join(__dirname, 'logs', `stdout.log`)
-const logfile2 = path.join(__dirname, 'logs', `stderr.log`)
+const logfile = path.join(__dirname, '../logs', `stdout.log`)
+const logfile2 = path.join(__dirname, '../logs', `stderr.log`)
 
 const getLogWriteStreams = () => {
     return Promise.all([
@@ -31,8 +31,7 @@ const getLogWriteStreams = () => {
             logFiles.map(logfile => 
                 fs.createWriteStream(logfile)
             ))
-    
-};
+}
 
 function spawnPython(resolve, reject, logStreams) {
     assert(Array.isArray(logStreams) && logStreams.length === 2)
