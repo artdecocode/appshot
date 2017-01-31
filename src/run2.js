@@ -117,5 +117,6 @@ const fn = argv.capture ? getWindow : getList
 const exec = fn.bind(null, argv.app, argv.title, !argv.all, argv.live)
 
 exec()
+    .then((res) => console.log(res))
+    .catch(error => console.error(error))
 
-    
