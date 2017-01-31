@@ -2,7 +2,7 @@
   "name": "appshot",
   "version": "1.0.0",
   "description": " A command line tool in Node.js to switch beteen apps' windows, take screenshots, and ...",
-  "main": "main.js",
+  "main": "src/api.js",
   "files": [
     "src/",
     "etc/",
