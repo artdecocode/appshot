@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": " A command line tool in Node.js to switch beteen apps' windows, take screenshots, and ...",
   "main": "main.js",
+  "files": [
+    "src/",
+    "etc/",
+    "bin/"
+  ],
   "scripts": {
     "test": "zoroaster test",
     "python": "python etc/run.py",
