@@ -74,7 +74,9 @@ function focus(app) {
 
 // don't need logStreams yet
 function screenshotWindow(win, dir, live, i) {
-    printList([win])
+    if (!argv.quiet) {
+        printList([win])
+    }
     const index = (live) ? i || 1 : null
     const initPromise = (argv.focus ? focus(win.app) : Promise.resolve())
     return initPromise

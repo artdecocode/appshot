@@ -77,8 +77,8 @@ run `./etc/active.py` which will use _applescript_:
 /Users/zavr/screenshots/3e484e04-dd1c-4ad1-8f3c-e97457ed1124.png
 ```
 
-TThe table with found windows will be printed as well, but in future
-it should be shown optionally.
+The table with found windows will be printed as well, unless you
+set the `--quiet` flag.
 
 ### Continuous
 
@@ -107,24 +107,12 @@ In capture mode, appshot will create a session directory insie of screenshots
 the directory and save all files in there.
 
 ```bash
-Offices-iMac:appshot zavr$ appshot --app Chrome --capture --live
+Offices-iMac:appshot zavr$ appshot --app Chrome --capture --live --quiet
 ```
 
 ```
-┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
-│ winid  │ app              │ title                                  │ pid    │
-│ 4386   │ Google Chrome    │                                        │ 65250  │
-└────────┴──────────────────┴────────────────────────────────────────┴────────┘
 /Users/zavr/Work/appshot/screenshots/35e2c9b0-d1e9-4c85-ac34-f44917edd020/1.png
-┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
-│ winid  │ app              │ title                                  │ pid    │
-│ 4386   │ Google Chrome    │                                        │ 65250  │
-└────────┴──────────────────┴────────────────────────────────────────┴────────┘
 /Users/zavr/Work/appshot/screenshots/35e2c9b0-d1e9-4c85-ac34-f44917edd020/2.png
-┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
-│ winid  │ app              │ title                                  │ pid    │
-│ 4386   │ Google Chrome    │                                        │ 65250  │
-└────────┴──────────────────┴────────────────────────────────────────┴────────┘
 /Users/zavr/Work/appshot/screenshots/35e2c9b0-d1e9-4c85-ac34-f44917edd020/3.png
 ```
 
@@ -140,6 +128,7 @@ Offices-iMac:appshot zavr$ appshot --app Chrome --capture --live
 ### Capture options
 
 - `--no-shadow` disable shadow
+- `--quiet` only print output location, without information about windows
 - `--screenshots-dir Directory` where to save screenshots. _default_ = ./screenshots
 - `--format jpg` png or jpeg. _default_ png
 - `--focus` bring window to focus (with apple script)
@@ -196,6 +185,6 @@ a screenshot of an app.
 
 # TODO:
 
- - add support for export of all fields from python, and provide interface between python script and nod
- - quiet mode
+ - add support for export of all fields from python, and provide interface between python script and node
  - add cli help
+ - use more `screencapture` options, such as formats other than `jpg` and `png`, `-P`,  `-T`, `-c`
