@@ -3,37 +3,11 @@ const cp = require('child_process')
 const uuid = require('uuid')
 const assert = require('assert')
 const debug = require('debug')('main')
-const fs = require('fs')
-const Writable = require('stream').Writable;
-const rotate = require('log-rotate');
-const pyPath = path.join(__dirname, 'etc', 'run.py');
 
-function rotateLogFile(logFile) {
-    return new Promise(
-        (resolve, reject) => {
-            rotate(logFile, { compress: false }, (err) => {
-                if (err) return reject(err)
-                return resolve(logFile)
-            })
-        }
-    )
-}
+const Writable = require('stream').Writable
+const pyPath = path.join(__dirname, '..', 'etc', 'run.py')
 
-const logfile = path.join(__dirname, '../logs', `stdout.log`)
-const logfile2 = path.join(__dirname, '../logs', `stderr.log`)
-
-const getLogWriteStreams = () => {
-    return Promise.all([
-        rotateLogFile(logfile),
-        rotateLogFile(logfile2),
-    ])
-        .then(logFiles => 
-            logFiles.map(logfile => 
-                fs.createWriteStream(logfile)
-            ))
-}
-
-function createWritable(data, title) {
+function createWritable(data) {
     const writable = new Writable()
     writable._write = (chunk, encoding, callback) => {
         data.push(String(chunk))
@@ -43,23 +17,29 @@ function createWritable(data, title) {
 }
 
 function spawnPython(resolve, reject, logStreams) {
-    assert(Array.isArray(logStreams) && logStreams.length === 2)
+    assert(Array.isArray(logStreams), 'Log streams should be an array')
+
     const python = cp.spawn('python', [pyPath])
     const data = []
     const errData = []
-    
-    python.stdout.pipe(logStreams[0])
-    python.stderr.pipe(logStreams[1])
-    
-    const stdoutDrain = createWritable(data, 'stdput')
-    const stderrDrain = createWritable(errData, 'stderr')
+
+    if (Array.isArray(logStreams)) {
+        debug(logStreams.map(ws =>
+            ((typeof ws === 'object' && 'path' in ws) ? ws.path : ws)
+        ))
+        if (logStreams.length && logStreams[0] instanceof Writable) python.stdout.pipe(logStreams[0])
+        if (logStreams.length > 1 && logStreams[2] instanceof Writable)python.stderr.pipe(logStreams[1])
+    }
+
+    const stdoutDrain = createWritable(data)
+    const stderrDrain = createWritable(errData)
 
     python.stdout
         .pipe(stdoutDrain)
 
     python.stderr
         .pipe(stderrDrain)
-    
+
     python.on('exit', (code) => {
         if (code !== 0) {
             return reject(getPythonExitError(errData, code))
@@ -77,17 +57,11 @@ function getPythonExitError(errData, code) {
     return error
 }
 
-function getWindowsWithPython() {
-    return getLogWriteStreams()
-        .then(logStreams => 
-            new Promise((resolve, reject) => 
-                spawnPython(resolve, reject, logStreams)
-            ))
+function getWindowsWithPython(logStreams) {
+    return new Promise((resolve, reject) =>
+        spawnPython(resolve, reject, logStreams)
+    )
         .then(JSON.parse)
-        .catch((err) => { 
-            console.error(err);
-            throw err;
-        })
 }
 
 function screencapture(windowId, dir, format, index, cursor) {
@@ -96,7 +70,7 @@ function screencapture(windowId, dir, format, index, cursor) {
     const extension = typeof format === 'string' ? format : 'png'
     const allowedFormats = ['jpg', 'png']
     assert(allowedFormats.indexOf(extension) !== -1, 'Format not allowed.')
-    
+
     const filename = path.join(dir, (index ? String(index) : uuid.v4()))
     const fullFilename = `${filename}.${extension}`
     debug(fullFilename)
@@ -112,8 +86,9 @@ function screencapture(windowId, dir, format, index, cursor) {
     const args = [`-l${windowId}`, fullFilename]
     const allArgs = [].concat(customArgs, args)
     debug(allArgs)
-    
+
     return new Promise((resolve, reject) => {
+        // add code here to run exec
         const screencapture = cp.spawn('screencapture', allArgs)
         const data = []
         screencapture.stdout.on('data', (chunk) => {
@@ -137,8 +112,8 @@ function parseArray(arr) {
 }
 
 
-function getWindows(app, title) {
-    return getWindowsWithPython()
+function getWindows(app, title, logStreams) {
+    return getWindowsWithPython(logStreams)
         .then(windows => windows.map(parseArray))
         .then(windowsAsObjects => windowsAsObjects
             .filter((win) => {
@@ -160,7 +135,7 @@ function main(dir, winName, title, format) {
         .then((res) => {
             assert(res.length, 'No windows found')
             debug('Found windows:', res)
-            return Promise.all(res.map(win => 
+            return Promise.all(res.map(win =>
                 screencapture(win.winid, dir, format)
             ))
         })
@@ -168,7 +143,8 @@ function main(dir, winName, title, format) {
 
 module.exports = main
 
-main.getWindows = (app, title) => getWindows(app, title)
+// run2 interface
+main.getWindows = (app, title, logStreams) => getWindows(app, title, logStreams)
 main.screenshotById = (winId, dir, index, cursor, format) => screencapture(winId, dir, format, index, cursor)
 
 

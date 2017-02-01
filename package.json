@@ -8,25 +8,32 @@
     "etc/",
     "bin/"
   ],
+  "bin": {
+    "appshot": "./bin/run2.js"
+  },
   "scripts": {
     "test": "zoroaster test",
     "python": "python etc/run.py",
-    "activechrome": "python etc/active.py --app Chrome",
-    "chrome": "node -harmony-async-await run Chrome file"
+    "list": "node src/run2",
+    "chrome": "DEBUG=main src/run2.js --app Chrome --capture -vv --cursor=1",
+    "activechrome": "python etc/active.py --app Chrome && npm run chrome"
   },
   "keywords": [
-    "app", "macOS", "screenshot", "screenshots"
+    "app",
+    "macOS",
+    "screenshot",
+    "screenshots"
   ],
   "author": "Anton <anton@sobes.io>",
   "license": "MIT",
   "dependencies": {
+    "chromedriver": "^2.27.2",
     "debug": "^2.6.0",
     "log-rotate": "^0.2.7",
     "uuid": "^3.0.1",
     "yargs": "^6.6.0"
   },
   "devDependencies": {
-    "chromedriver": "^2.27.2",
     "selenium-webdriver": "^3.0.1",
     "zoroaster": "^0.2.0"
   }

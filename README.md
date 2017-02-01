@@ -2,8 +2,8 @@
 
 A tool to capture browser window on MacOS.
 
-Data comes encoded as JSON string from `etc/run.py`, which uses Quartz to 
-get information about windows. 
+Data comes encoded as JSON string from `etc/run.py`, which uses Quartz to
+get information about windows.
 
 ```
 [[64, "Flux", "Item-0", 526], [26, "SystemUIServer", "AppleBluetoothExtra", 394], [30, "SystemUIServer", "AirPortExtra", 394], [46, "SystemUIServer", "DisplaysExtra", 394], [34, "SystemUIServer", "AppleTextInputExtra", 394], [38, "SystemUIServer", "AppleClockExtra", 394], [42, "SystemUIServer", "AppleUser", 394], [54, "Spotlight", "Item-0", 464], [24, "SystemUIServer", "Siri", 394], [22, "SystemUIServer", "NotificationCenter", 394], [3, "Window Server", "Menubar", 158], [20,
@@ -13,6 +13,12 @@ get information about windows.
 
 The first value is `winid`, second is Application name, third is title of active tag, and fourth is the `pid`.
 
-# TODO: 
- 
+## Usage
+
+```bash
+
+```
+
+# TODO:
+
  - add support for export of all fields from python, and provide interface between python script and nod

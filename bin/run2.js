@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const lib = require('./lib')
 
 var argv = require('yargs')
     .count('verbose')
@@ -16,7 +15,8 @@ function DEBUG() { VERBOSE_LEVEL >= 2 && console.log.apply(console, arguments) }
 // INFO("Showing semi-important stuff too");
 // DEBUG("Extra chatty mode");
 
-const main = require('./main')
+const main = require('../src/main')
+const lib = require('../src/lib')
 const assert = require('assert')
 const uuid = require('uuid')
 const path = require('path')
@@ -55,8 +55,11 @@ function screenshotWindow(winId, dir, live, i) {
     const index = (live) ? i || 1 : null
     return main.screenshotById(winId, dir, index, argv.cursor) // make cursor part of aruments
         .then((res) => {
-            console.error(res) // pretty print
-            return live ? screenshotWindow(winId, dir, live, index + 1) : res
+            if (live) {
+                console.error(res)
+                return screenshotWindow(winId, dir, live, index + 1)
+            }
+            return res
         })
 }
 
@@ -101,8 +104,9 @@ function getList(app, title, filterTitle, live, i, logStreams) {
             return res
         })
         .then((res) => {
-            // pretty print in table
-            console.error(res)
+            if (live) {
+                console.error(res)
+            }
             return live ? getList(app, title, filterTitle, live, index + 1, logStreams) : res
         })
 }
@@ -116,9 +120,9 @@ const logStreams = lib.getLogWriteStreams(argv.logStdout, argv.logStderr)
 logStreams
     .then((logStreams) => exec(logStreams))
     .then((res) => {
-        // if (!argv.live) {
-        //     console.error(res)
-        // }
+        if (!argv.live) {
+            console.error(res)
+        }
         return res
     })
     .catch(error => console.error(error))
