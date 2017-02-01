@@ -54,15 +54,38 @@ function filterEmptyTitle(obj) {
 
 // }
 
+function focus(app) {
+    console.error('focusing on the app %s', app)
+    const activePath = path.join(__dirname, '../etc/active.py')
+    return new Promise((resolve, reject) => {
+        const active = cp.spawn(activePath, [
+            '--app',
+            app
+        ], {})
+        active.on('exit', (code) => {
+            if (code !== 0) {
+                return reject(new Error(code))
+            }
+            return resolve()
+        })
+    })
+}
+
 // don't need logStreams yet
 function screenshotWindow(win, dir, live, i) {
     printList([win])
     const index = (live) ? i || 1 : null
-    return main.screenshotById(win.winid, dir, index, argv.cursor, argv.format, !argv.shadow) // make cursor part of aruments
-        .then((res) => {
-            console.error(res) // location of the saved file
-            return live ? screenshotWindow(win, dir, live, index + 1) : res
-        })
+    const initPromise = (argv.focus ? focus(win.app) : Promise.resolve())
+    return initPromise
+        .then(() =>
+            main.screenshotById(win.winid, dir, index, argv.cursor, argv.format,
+                (argv.shadow !== undefined ? !argv.shadow : NO_SHADOW )) // make cursor part of aruments
+                .then((res) => {
+                    console.error(res) // location of the saved file
+                    return live ? screenshotWindow(win, dir, live, index + 1) : res
+                })
+        )
+
 }
 
 function printList(res) {
@@ -139,6 +162,7 @@ function getResString(values) {
 // process.on('unhandledRejection', console.error)
 
 const HIDE_EMPTY_TITLE = false
+const NO_SHADOW = false
 
 const fn = argv.capture ? getWindow : getList
 const exec = fn.bind(null, argv.app, argv.title,
