@@ -14,9 +14,10 @@ function DEBUG() { VERBOSE_LEVEL >= 2 && console.log.apply(console, arguments) }
 // WARN("Showing only important stuff");
 // INFO("Showing semi-important stuff too");
 // DEBUG("Extra chatty mode");
-
-const main = require('../src/main')
 const lib = require('../src/lib')
+const main = require('../src/main')
+
+const Table = require('cli-table')
 const assert = require('assert')
 const uuid = require('uuid')
 const path = require('path')
@@ -49,27 +50,36 @@ function filterEmptyTitle(obj) {
 //     title: 'Logfile by z-vr · Pull Request #1 · Sobesednik/browsershot',
 //     pid: 372 } ]
 
+// class Window {
+
+// }
+
 // don't need logStreams yet
-function screenshotWindow(winId, dir, live, i) {
-    console.error('screenshot window winid %s live %s %i', winId, live, i)
+function screenshotWindow(win, dir, live, i) {
+    printList([win])
     const index = (live) ? i || 1 : null
-    return main.screenshotById(winId, dir, index, argv.cursor) // make cursor part of aruments
+    return main.screenshotById(win.winid, dir, index, argv.cursor) // make cursor part of aruments
         .then((res) => {
-            if (live) {
-                console.error(res)
-                return screenshotWindow(winId, dir, live, index + 1)
-            }
-            return res
+            console.error(res) // location of the saved file
+            return live ? screenshotWindow(win, dir, live, index + 1) : res
         })
+}
+
+function printList(res) {
+    if (Array.isArray(res)) {
+        const tableString = getResString(res)
+        console.error(tableString)
+    }
+    return res
 }
 
 // get window id first, and run screenshotWindow recursively after that
 // todo: get window id every time
 function getWindow(app, title, filterTitle, live, i, logStreams) {
-    console.error('get window app %s title %s filterTable %s live %s', app, title, filterTitle, live)
+    // console.error('get window app %s title %s filterTable %s live %s', app, title, filterTitle, live)
     const index = (live) ? i || 1 : null
 
-    let cachedWinId
+    let cachedWin
 
     return main.getWindows(app, title, logStreams)
         .then(res => {
@@ -78,22 +88,22 @@ function getWindow(app, title, filterTitle, live, i, logStreams) {
             }
             return res
         })
+        .then(res => (res.length > 1 ? printList(res) : res)) // it will be printed later by screenshotWindow
         .then(res => {
             assert(Array.isArray(res))
-            assert(res.length)
-            return res
+            assert(res.length, 'At least one window must be found')
+            return res[0]
         })
-        .then(res => res[0])
         .then(res => {
             assert(res.winid, 'Window must have a winid')
-            cachedWinId = res.winid
-            return cachedWinId
+            cachedWin = res
+            return cachedWin
         })
-        .then(res => screenshotWindow(res, dir, live))
+        .then(window => screenshotWindow(window, dir, live, null))
 }
 
 function getList(app, title, filterTitle, live, i, logStreams) {
-    console.error('get list app %s title %s filterTable %s live %s', app, title, filterTitle, live)
+    // console.error('get list app %s title %s filterTable %s live %s', app, title, filterTitle, live)
     const index = (live) ? i || 1 : null
 
     return main.getWindows(app, title, logStreams)
@@ -103,26 +113,41 @@ function getList(app, title, filterTitle, live, i, logStreams) {
             }
             return res
         })
-        .then((res) => {
-            if (live) {
-                console.error(res)
-            }
-            return live ? getList(app, title, filterTitle, live, index + 1, logStreams) : res
-        })
+        .then(printList)
+        .then((res) =>
+            (live ? getList(app, title, filterTitle, live, index + 1, logStreams) : res)
+        )
 }
+function getResString(values) {
+    const keys = ['winid', 'app', 'title', 'pid']
+    const table = new Table({
+        chars: {'mid': '', 'left-mid': '', 'mid-mid': '', 'right-mid': ''},
+        head: keys,
+    })
+    const arrayForTable = values.map(row =>
+        keys.map((key) => row[key])
+    )
+    // console.error(arrayForTable)
+    // const values = Object.keys(res).map(key => res[key])
+
+    // values.forEach(value => table.push(value))
+    table.push(...arrayForTable)
+    return table.toString()
+}
+
 
 // process.on('unhandledRejection', console.error)
 
 const fn = argv.capture ? getWindow : getList
-const exec = fn.bind(null, argv.app, argv.title, !argv.all, argv.live, null)
+const exec = fn.bind(null, argv.app, argv.title, argv.filterEmptyTitle, argv.live, null)
 
 const logStreams = lib.getLogWriteStreams(argv.logStdout, argv.logStderr)
 logStreams
     .then((logStreams) => exec(logStreams))
     .then((res) => {
-        if (!argv.live) {
-            console.error(res)
-        }
+        // if (!argv.live) {
+        //     console.error(res)
+        // }
         return res
     })
     .catch(error => console.error(error))
