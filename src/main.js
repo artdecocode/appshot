@@ -24,11 +24,8 @@ function spawnPython(resolve, reject, logStreams) {
     const errData = []
 
     if (Array.isArray(logStreams)) {
-        debug(logStreams.map(ws =>
-            ((typeof ws === 'object' && 'path' in ws) ? ws.path : ws)
-        ))
         if (logStreams.length && logStreams[0] instanceof Writable) python.stdout.pipe(logStreams[0])
-        if (logStreams.length > 1 && logStreams[2] instanceof Writable)python.stderr.pipe(logStreams[1])
+        if (logStreams.length > 1 && logStreams[1] instanceof Writable)python.stderr.pipe(logStreams[1])
     }
 
     const stdoutDrain = createWritable(data)
