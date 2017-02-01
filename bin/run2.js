@@ -146,6 +146,7 @@ function getResString(values) {
     const keys = ['winid', 'app', 'title', 'pid']
     const table = new Table({
         chars: {'mid': '', 'left-mid': '', 'mid-mid': '', 'right-mid': ''},
+        colWidths: [ 8, 18, 40, 8 ],
         head: keys,
     })
     const arrayForTable = values.map(row =>
