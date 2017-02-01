@@ -10,23 +10,23 @@ npm i -g appshot
 
 - `appshot` list all windows
 
-![appshot command](./doc/commands/appshot.png)
+![appshot command](https://sobesednik.co/appshot/appshot.png)
 
 - `apphost --app App` filter by app
 
-![appshot --app App command](./doc/commands/app.png)
+![appshot --app App command](https://sobesednik.co/appshot/app.png)
 
 - `apphost --no-empty-title` filter out windows with empty title
 
-![appshot --no-empty-title command](./doc/commands/no-empty-title.png)
+![appshot --no-empty-title command](https://sobesednik.co/appshot/no-empty-title.png)
 
 - `apphost --title Title` filter by title
 
-![appshot --app App --title Title command](./doc/commands/list-app-title.png)
+![appshot --app App --title Title command](https://sobesednik.co/appshot/list-app-title.png)
 
 - `apphost --capture` save screenshot
 
-![appshot --capture command](./doc/commands/capture.png)
+![appshot --capture command](https://sobesednik.co/appshot/capture.png)
 
 ### capture options
 
@@ -54,7 +54,7 @@ appshot --app Chrome \
         --log-stderr ~/appshot-logs/stderr.log
 ```
 
-![captured browser window with zoroaster website](./doc/capture.jpg)
+![captured browser window with zoroaster website](https://sobesednik.co/appshot/capture.jpg)
 
 ## Explaination
 
