@@ -14,8 +14,8 @@
   "scripts": {
     "test": "zoroaster test",
     "python": "python etc/run.py",
-    "list": "node src/run2",
-    "chrome": "DEBUG=main src/run2.js --app Chrome --capture -vv --cursor=1",
+    "list": "node bin/run2",
+    "chrome": "DEBUG=main bin/run2.js --app Chrome --capture --no-empty-title",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
   },
   "keywords": [

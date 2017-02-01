@@ -35,6 +35,27 @@ npm i -g appshot
 - `--format jpg` png or jpeg. _default_ png
 - `--focus` bring window to focus (with apple script)
 
+### global options
+
+- `--log-stdout Directory` save Python stdout logs to this directory
+- `--log-stderr Directory` save Python stderr logs to this directory
+
+## Example
+
+```bash
+appshot --app Chrome \
+        --title zoroaster \
+        --capture \
+        --no-shadow \
+        --screenshots-dir ~/appshots \
+        --format jpg \
+        --focus \
+        --log-stdout ~/appshot-logs/stdout.log \
+        --log-stderr ~/appshot-logs/stderr.log
+```
+
+![captured browser window with zoroaster website](./doc/capture.jpg)
+
 ## Explaination
 
 Data comes encoded as JSON string from `etc/run.py`, which uses Quartz to
