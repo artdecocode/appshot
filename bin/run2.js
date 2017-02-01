@@ -151,8 +151,7 @@ function getResString(values) {
     // console.error(arrayForTable)
     // const values = Object.keys(res).map(key => res[key])
 
-    // values.forEach(value => table.push(value))
-    table.push(...arrayForTable)
+    arrayForTable.forEach(row => table.push(row))
     return table.toString()
 }
 
