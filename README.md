@@ -5,13 +5,31 @@
 
 A tool to list & capture application windows on MacOS.
 
+## Install
+
 ```
 npm i -g appshot
 ```
 
+## Run
+
+There are two modes: `list` and `capture`, with `list` mode activated by
+default.
+
+### List
+
 ```bash
-Offices-iMac:~ zavr$ appshot
+Offices-iMac:~ zavr$ appshot --list
 ```
+
+Node will spawn a python script which works with Quartz library to
+get info about windows. The script encodes the data as JSON string
+and sends it via `stdout` to the Node process, which parses the
+string back and displays results in a table.
+
+You can filter results with `--app <App>` and `--title <Title>`
+flags. To skip printing windows with empty title, and
+`--no-empty-title`.
 
 ```
 ┌───────┬─────────────────┬────────────────────────────────┬───────┐
@@ -39,8 +57,73 @@ Offices-iMac:~ zavr$ appshot
 └───────┴─────────────────┴────────────────────────────────┴───────┘
 ```
 
-There are two modes: `list` and `capture`, with `list` mode activated by
-default.
+### Capture
+
+```bash
+Offices-iMac:appshot zavr$ appshot --app iTunes --capture --screenshots-dir ~/screenshots
+```
+
+After getting the window's id via the same process as `list` mode,
+spawn `screencapture`, passing the id of the window. It does not
+have to be in foreground, and can appear dimmed. To solve this,
+add `--focus` flag to run `./etc/active.py` which will use
+applescript like `tell app "Finder" to set frontmost of process iTunes to true`.
+
+```
+┌───────┬────────┬────────┬──────┐
+│ winid │ app    │ title  │ pid  │
+│ 297   │ iTunes │ iTunes │ 1137 │
+└───────┴────────┴────────┴──────┘
+/Users/zavr/screenshots/3e484e04-dd1c-4ad1-8f3c-e97457ed1124.png
+```
+
+### Continuous
+
+```bash
+Offices-iMac:appshot zavr$ appshot --app Chrome --live
+```
+
+Appshot will execute functions in a loop, until `ctrl-c` is pressed.
+
+```
+┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
+│ winid  │ app              │ title                                  │ pid    │
+│ 4387   │ Google Chrome    │ Sobesednik/appshot: A Node.js program… │ 65250  │
+└────────┴──────────────────┴────────────────────────────────────────┴────────┘
+┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
+│ winid  │ app              │ title                                  │ pid    │
+│ 4387   │ Google Chrome    │ Hello world from zoroaster!            │ 65250  │
+└────────┴──────────────────┴────────────────────────────────────────┴────────┘
+┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
+│ winid  │ app              │ title                                  │ pid    │
+│ 4387   │ Google Chrome    │ New Tab                                │ 65250  │
+└────────┴──────────────────┴────────────────────────────────────────┴────────┘
+```
+
+In capture mode, appshot will create a session directory in screenshots directory
+and save all files in there.
+
+```bash
+Offices-iMac:appshot zavr$ appshot --app Chrome --capture --live
+```
+
+```
+┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
+│ winid  │ app              │ title                                  │ pid    │
+│ 4386   │ Google Chrome    │                                        │ 65250  │
+└────────┴──────────────────┴────────────────────────────────────────┴────────┘
+/Users/zavr/Work/appshot/screenshots/35e2c9b0-d1e9-4c85-ac34-f44917edd020/1.png
+┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
+│ winid  │ app              │ title                                  │ pid    │
+│ 4386   │ Google Chrome    │                                        │ 65250  │
+└────────┴──────────────────┴────────────────────────────────────────┴────────┘
+/Users/zavr/Work/appshot/screenshots/35e2c9b0-d1e9-4c85-ac34-f44917edd020/2.png
+┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
+│ winid  │ app              │ title                                  │ pid    │
+│ 4386   │ Google Chrome    │                                        │ 65250  │
+└────────┴──────────────────┴────────────────────────────────────────┴────────┘
+/Users/zavr/Work/appshot/screenshots/35e2c9b0-d1e9-4c85-ac34-f44917edd020/3.png
+```
 
 ## Commands
 
@@ -48,9 +131,10 @@ default.
 - `apphost --app App` filter by app
 - `apphost --no-empty-title` filter out windows with empty title
 - `apphost --title Title` filter by title
+
 - `apphost --capture` save screenshot in `./screenshots` (will try to make if not found)
 
-### capture options
+### Capture options
 
 - `--no-shadow` disable shadow
 - `--screenshots-dir Directory` where to save screenshots. _default_ = ./screenshots
@@ -59,7 +143,7 @@ default.
 - `--live` in capture: screate a session folder, find out winid and keep taking screenshot;
            in list: execute python script to get window information (see `etc/run.py`).
 
-### global options
+### Global options
 
 - `--log-stdout Directory` save Python stdout logs to this directory
 - `--log-stderr Directory` save Python stderr logs to this directory
@@ -110,3 +194,4 @@ a screenshot of an app.
 # TODO:
 
  - add support for export of all fields from python, and provide interface between python script and nod
+ - quiet mode
