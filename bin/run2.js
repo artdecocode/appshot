@@ -58,7 +58,7 @@ function filterEmptyTitle(obj) {
 function screenshotWindow(win, dir, live, i) {
     printList([win])
     const index = (live) ? i || 1 : null
-    return main.screenshotById(win.winid, dir, index, argv.cursor) // make cursor part of aruments
+    return main.screenshotById(win.winid, dir, index, argv.cursor, argv.format, !argv.shadow) // make cursor part of aruments
         .then((res) => {
             console.error(res) // location of the saved file
             return live ? screenshotWindow(win, dir, live, index + 1) : res

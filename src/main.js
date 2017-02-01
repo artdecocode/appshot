@@ -64,12 +64,20 @@ function getWindowsWithPython(logStreams) {
         .then(JSON.parse)
 }
 
-function screencapture(windowId, dir, format, index, cursor) {
+function screencapture(windowId, dir, format, index, cursor, noShadow) {
     assert(windowId)
     assert(dir)
     const extension = typeof format === 'string' ? format : 'png'
     const allowedFormats = ['jpg', 'png']
-    assert(allowedFormats.indexOf(extension) !== -1, 'Format not allowed.')
+    try {
+        assert(allowedFormats.indexOf(extension) !== -1)
+    } catch (err) {
+        const error = new Error()
+        error.message = `Format ${format} not allowed. Allowed formats are: ${
+            allowedFormats.join(', ')
+        }`
+        return Promise.reject(error)
+    }
 
     const filename = path.join(dir, (index ? String(index) : uuid.v4()))
     const fullFilename = `${filename}.${extension}`
@@ -82,6 +90,10 @@ function screencapture(windowId, dir, format, index, cursor) {
     }
     if (cursor) {
         customArgs.push('-C')
+    }
+    if (noShadow) {
+        console.error('no shadow!')
+        customArgs.push('-o')
     }
     const args = [`-l${windowId}`, fullFilename]
     const allArgs = [].concat(customArgs, args)
@@ -145,7 +157,7 @@ module.exports = main
 
 // run2 interface
 main.getWindows = (app, title, logStreams) => getWindows(app, title, logStreams)
-main.screenshotById = (winId, dir, index, cursor, format) => screencapture(winId, dir, format, index, cursor)
+main.screenshotById = (winId, dir, index, cursor, format, noShadow) => screencapture(winId, dir, format, index, cursor, noShadow)
 
 
 
