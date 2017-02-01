@@ -92,7 +92,6 @@ function screencapture(windowId, dir, format, index, cursor, noShadow) {
         customArgs.push('-C')
     }
     if (noShadow) {
-        console.error('no shadow!')
         customArgs.push('-o')
     }
     const args = [`-l${windowId}`, fullFilename]

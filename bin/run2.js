@@ -138,8 +138,11 @@ function getResString(values) {
 
 // process.on('unhandledRejection', console.error)
 
+const HIDE_EMPTY_TITLE = false
+
 const fn = argv.capture ? getWindow : getList
-const exec = fn.bind(null, argv.app, argv.title, argv.filterEmptyTitle, argv.live, null)
+const exec = fn.bind(null, argv.app, argv.title,
+    (argv.emptyTitle !== undefined ? !argv.emptyTitle : HIDE_EMPTY_TITLE ), argv.live, null)
 
 const logStreams = lib.getLogWriteStreams(argv.logStdout, argv.logStderr)
 logStreams
