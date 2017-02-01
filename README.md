@@ -28,7 +28,7 @@ and sends it via `stdout` to the Node process, which parses the
 string back and displays results in a table.
 
 You can filter results with `--app <App>` and `--title <Title>`
-flags. To skip printing windows with empty title, and
+flags. To skip printing windows with empty title, add
 `--no-empty-title`.
 
 ```
@@ -52,7 +52,6 @@ flags. To skip printing windows with empty title, and
 │ 297   │ iTunes          │ iTunes                         │ 1137  │
 │ 4     │ Window Server   │ Backstop Menubar               │ 158   │
 │ 4375  │ Finder          │                                │ 64841 │
-│ 4326  │ Dock            │ Desktop Picture - IMG_2586.JPG │ 64621 │
 │ 2     │ Window Server   │ Desktop                        │ 158   │
 └───────┴─────────────────┴────────────────────────────────┴───────┘
 ```
@@ -63,11 +62,12 @@ flags. To skip printing windows with empty title, and
 Offices-iMac:appshot zavr$ appshot --app iTunes --capture --screenshots-dir ~/screenshots
 ```
 
-After getting the window's id via the same process as `list` mode,
-spawn `screencapture`, passing the id of the window. It does not
-have to be in foreground, and can appear dimmed. To solve this,
-add `--focus` flag to run `./etc/active.py` which will use
-applescript like `tell app "Finder" to set frontmost of process iTunes to true`.
+After getting information about windows via the same process as
+`list` mode, spawn `screencapture`, passing the id of the first
+found window. Windows do not have to be in foreground, and can
+appear dimmed. To solve this, add `--focus` flag to additionally
+run `./etc/active.py` which will use _applescript_:
+`tell app "Finder"  to set frontmost of process iTunes to true`.
 
 ```
 ┌───────┬────────┬────────┬──────┐
@@ -76,6 +76,9 @@ applescript like `tell app "Finder" to set frontmost of process iTunes to true`.
 └───────┴────────┴────────┴──────┘
 /Users/zavr/screenshots/3e484e04-dd1c-4ad1-8f3c-e97457ed1124.png
 ```
+
+TThe table with found windows will be printed as well, but in future
+it should be shown optionally.
 
 ### Continuous
 
@@ -100,8 +103,8 @@ Appshot will execute functions in a loop, until `ctrl-c` is pressed.
 └────────┴──────────────────┴────────────────────────────────────────┴────────┘
 ```
 
-In capture mode, appshot will create a session directory in screenshots directory
-and save all files in there.
+In capture mode, appshot will create a session directory insie of screenshots
+the directory and save all files in there.
 
 ```bash
 Offices-iMac:appshot zavr$ appshot --app Chrome --capture --live
@@ -195,3 +198,4 @@ a screenshot of an app.
 
  - add support for export of all fields from python, and provide interface between python script and nod
  - quiet mode
+ - add cli help
