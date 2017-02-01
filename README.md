@@ -1,6 +1,41 @@
 # Browsershot
 
-A tool to capture browser window on MacOS.
+A tool to list capture application windows on MacOS.
+
+```bash
+npm i -g appshot
+```
+
+## commands
+
+- `appshot` list all windows
+
+![appshot command](./doc/commands/appshot.png)
+
+- `apphost --app App` filter by app
+
+![appshot --app App command](./doc/commands/app.png)
+
+- `apphost --no-empty-title` filter out windows with empty title
+
+![appshot --no-empty-title command](./doc/commands/no-empty-title.png)
+
+- `apphost --title Title` filter by title
+
+![appshot --app App --title Title command](./doc/commands/list-app-title.png)
+
+- `apphost --capture` save screenshot
+
+![appshot --capture command](./doc/commands/capture.png)
+
+### capture options
+
+- `--no-shadow` disable shadow
+- `--screenshots-dir Directory` where to save screenshots. _default_ = ./screenshots
+- `--format jpg` png or jpeg. _default_ png
+- `--focus` bring window to focus (with apple script)
+
+## Explaination
 
 Data comes encoded as JSON string from `etc/run.py`, which uses Quartz to
 get information about windows.
@@ -11,13 +46,9 @@ get information about windows.
 "Finder", "", 395], [18, "Dock", "Desktop Picture - IMG_2586.JPG", 391], [2, "Window Server", "Desktop", 158]]
 ```
 
-The first value is `winid`, second is Application name, third is title of active tag, and fourth is the `pid`.
-
-## Usage
-
-```bash
-
-```
+JSON-encoded array with records like `[winid, app, title, pid]` is printed to `stdout` by Python
+and deserialised by Node. Once window id is found, we can call `screecapture -l<winid>` to take
+a screenshot of an app.
 
 # TODO:
 
