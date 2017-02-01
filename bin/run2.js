@@ -22,10 +22,11 @@ const assert = require('assert')
 const uuid = require('uuid')
 const path = require('path')
 const fs = require('fs')
+const cp = require('child_process')
 
-const screenshotsDir = argv.screenshotsDir || 'screenshots'
+const screenshotsDir = argv.screenshotsDir || path.join(process.cwd(), 'screenshots')
 const sessionId = argv.live ? uuid.v4() : '.'
-const dir = path.join(process.cwd(), screenshotsDir, sessionId)
+const dir = path.join(screenshotsDir, sessionId)
 
 // console.log(argv)
 
