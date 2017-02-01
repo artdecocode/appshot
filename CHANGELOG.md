@@ -1,5 +1,6 @@
 ## [1.1.0](https://github.com/Sobesednik/appshot/compare/v1.0.1...v1.1.0) (2017-02-01)
 
+- run in node 4
 - quiet option to avoid printing in capture mode
 - update readme to have title `appshot`
 - add _CHANGELOG_ file

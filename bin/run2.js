@@ -105,8 +105,6 @@ function getWindow(app, title, filterTitle, live, i, logStreams) {
     // console.error('get window app %s title %s filterTable %s live %s', app, title, filterTitle, live)
     const index = (live) ? i || 1 : null
 
-    let cachedWin
-
     return main.getWindows(app, title, logStreams)
         .then(res => {
             if (filterTitle) {
@@ -118,12 +116,8 @@ function getWindow(app, title, filterTitle, live, i, logStreams) {
         .then(res => {
             assert(Array.isArray(res))
             assert(res.length, 'At least one window must be found')
+            assert(res[0].winid, 'Window must have a winid')
             return res[0]
-        })
-        .then(res => {
-            assert(res.winid, 'Window must have a winid')
-            cachedWin = res
-            return cachedWin
         })
         .then(window => screenshotWindow(window, dir, live, null))
 }
