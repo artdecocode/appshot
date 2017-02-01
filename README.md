@@ -1,32 +1,54 @@
-# Browsershot
+# Appshot: take screenshots from command line!
 
-A tool to list capture application windows on MacOS.
+[![npm version](https://badge.fury.io/js/appshot.svg)](https://badge.fury.io/js/appshot)
+[![Build Status](https://travis-ci.org/Sobesednik/appshot.svg?branch=master)](https://travis-ci.org/Sobesednik/appshot)
 
-```bash
+A tool to list & capture application windows on MacOS.
+
+```
 npm i -g appshot
 ```
 
-## commands
+```bash
+Offices-iMac:~ zavr$ appshot
+```
+
+```
+┌───────┬─────────────────┬────────────────────────────────┬───────┐
+│ winid │ app             │ title                          │ pid   │
+│ 4345  │ SystemUIServer  │ AppleBluetoothExtra            │ 64784 │
+│ 4349  │ SystemUIServer  │ AirPortExtra                   │ 64784 │
+│ 4365  │ SystemUIServer  │ DisplaysExtra                  │ 64784 │
+│ 4353  │ SystemUIServer  │ AppleTextInputExtra            │ 64784 │
+│ 4357  │ SystemUIServer  │ AppleClockExtra                │ 64784 │
+│ 4361  │ SystemUIServer  │ AppleUser                      │ 64784 │
+│ 4343  │ SystemUIServer  │ Siri                           │ 64784 │
+│ 4341  │ SystemUIServer  │ NotificationCenter             │ 64784 │
+│ 3218  │ Alarm Clock     │ Item-0                         │ 45378 │
+│ 54    │ Spotlight       │ Item-0                         │ 464   │
+│ 64    │ Flux            │ Item-0                         │ 526   │
+│ 3     │ Window Server   │ Menubar                        │ 158   │
+│ 4328  │ Dock            │ Dock                           │ 64621 │
+│ 4231  │ iTerm2          │ 1. bash                        │ 57916 │
+│ 4281  │ Code - Insiders │ README.md - appshot            │ 63561 │
+│ 297   │ iTunes          │ iTunes                         │ 1137  │
+│ 4     │ Window Server   │ Backstop Menubar               │ 158   │
+│ 4375  │ Finder          │                                │ 64841 │
+│ 4326  │ Dock            │ Desktop Picture - IMG_2586.JPG │ 64621 │
+│ 2     │ Window Server   │ Desktop                        │ 158   │
+└───────┴─────────────────┴────────────────────────────────┴───────┘
+```
+
+There are two modes: `list` and `capture`, with `list` mode activated by
+default.
+
+## Commands
 
 - `appshot` list all windows
-
-![appshot command](https://sobesednik.co/appshot/appshot.png)
-
 - `apphost --app App` filter by app
-
-![appshot --app App command](https://sobesednik.co/appshot/app.png)
-
 - `apphost --no-empty-title` filter out windows with empty title
-
-![appshot --no-empty-title command](https://sobesednik.co/appshot/no-empty-title.png)
-
 - `apphost --title Title` filter by title
-
-![appshot --app App --title Title command](https://sobesednik.co/appshot/list-app-title.png)
-
-- `apphost --capture` save screenshot
-
-![appshot --capture command](https://sobesednik.co/appshot/capture.png)
+- `apphost --capture` save screenshot in `./screenshots` (will try to make if not found)
 
 ### capture options
 
@@ -34,13 +56,27 @@ npm i -g appshot
 - `--screenshots-dir Directory` where to save screenshots. _default_ = ./screenshots
 - `--format jpg` png or jpeg. _default_ png
 - `--focus` bring window to focus (with apple script)
+- `--live` in capture: screate a session folder, find out winid and keep taking screenshot;
+           in list: execute python script to get window information (see `etc/run.py`).
 
 ### global options
 
 - `--log-stdout Directory` save Python stdout logs to this directory
 - `--log-stderr Directory` save Python stderr logs to this directory
 
-## Example
+## Screenshots
+
+![appshot command](https://sobesednik.co/appshot/appshot.png)
+
+![appshot --app App command](https://sobesednik.co/appshot/app.png)
+
+![appshot --no-empty-title command](https://sobesednik.co/appshot/no-empty-title.png)
+
+![appshot --app App --title Title command](https://sobesednik.co/appshot/list-app-title.png)
+
+![appshot --capture command](https://sobesednik.co/appshot/capture.png)
+
+### Example
 
 ```bash
 appshot --app Chrome \
