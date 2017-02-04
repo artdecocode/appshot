@@ -185,6 +185,9 @@ a screenshot of an app.
 
 # TODO:
 
- - add support for export of all fields from python, and provide interface between python script and node
- - add cli help
- - use more `screencapture` options, such as formats other than `jpg` and `png`, `-P`,  `-T`, `-c`
+ - [ ] add support for export of all fields from python, and provide interface between python script and node
+ - [ ] add cli help
+ - [ ] add cli version
+ - [ ] use more `screencapture` options, such as formats other than `jpg` and `png`, `-P`,  `-T`, `-c`
+ - [ ] it should not print anything before taking a screenshot
+
