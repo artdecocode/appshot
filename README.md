@@ -188,3 +188,9 @@ a screenshot of an app.
  - add support for export of all fields from python, and provide interface between python script and node
  - add cli help
  - use more `screencapture` options, such as formats other than `jpg` and `png`, `-P`,  `-T`, `-c`
+
+ ---
+
+Copyright 2018 [Art Deco Code][1]
+
+[1]: https://artdeco.bz
