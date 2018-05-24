@@ -1,5 +1,5 @@
 module.exports = {
-    openBrowserAndTakeScreenshotOfUrl: (url) => {
-        return Promise.resolve(url)
-    },
+  openBrowserAndTakeScreenshotOfUrl: (url) => {
+    return Promise.resolve(url)
+  },
 }

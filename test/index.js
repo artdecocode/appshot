@@ -1,19 +1,21 @@
-const cp = require('child_process')
-const path = require('path')
+import { exec } from 'child_process'
+import { join } from 'path'
 
 const exe = path.join(__dirname, '../bin', 'run2.js')
 
-const TestSuite = {
-    'should execute binary': () => {
-        return new Promise((resolve, reject) => {
-            cp.exec(exe, {}, (error, stdout, stderr) => {
-                if (error) return reject(error)
-                console.error(stdout)
-                console.error(stderr)
-                return resolve({ stdout, stderr })
-            })
-        })
-    },
+const T = {
+  async 'executes binary'() {
+    const { stdout: o, stderr: e } = await new Promise((r, j) => {
+      exec(exe, {}, (error, stdout, stderr) => {
+        if (error) return j(error)
+        console.error(stdout)
+        console.error(stderr)
+        return r({ stdout, stderr })
+      })
+    })
+    equal(o)
+    equal(e)
+  },
 }
 
-module.exports = TestSuite
+export default T

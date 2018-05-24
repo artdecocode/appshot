@@ -1,21 +1,22 @@
 {
   "name": "appshot",
   "version": "1.1.0",
-  "description": " A command line tool in Node.js to switch beteen apps' windows, take screenshots, and ...",
+  "description": " A command-line tool in Node.js to take screen-shots of different windows.",
   "main": "src/api.js",
   "files": [
-    "src/",
-    "etc/",
-    "bin/"
+    "src",
+    "etc",
+    "bin"
   ],
   "bin": {
-    "appshot": "./bin/run2.js"
+    "appshot": "bin/index.js"
   },
   "scripts": {
     "test": "zoroaster test",
     "python": "python etc/run.py",
     "list": "node bin/run2",
     "chrome": "DEBUG=main bin/run2.js --app Chrome --capture --no-empty-title",
+    "lint": "eslint .",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
   },
   "keywords": [
@@ -27,15 +28,16 @@
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
   "dependencies": {
-    "cli-table": "^0.3.1",
-    "debug": "^2.6.0",
-    "log-rotate": "^0.2.7",
-    "uuid": "^3.0.1",
-    "yargs": "^6.6.0"
+    "cli-table": "0.3.1",
+    "debug": "3.1.0",
+    "log-rotate": "0.2.8",
+    "uuid": "3.2.1",
+    "yargs": "11.0.0"
   },
   "devDependencies": {
-    "chromedriver": "^2.27.2",
-    "selenium-webdriver": "^3.0.1",
-    "zoroaster": "^0.2.0"
+    "eslint": "4.19.1",
+    "eslint-config-artdeco": "1.0.0",
+    "selenium-webdriver": "4.0.0-alpha.1",
+    "zoroaster": "2.1.0"
   }
 }
