@@ -24,7 +24,7 @@
     "screenshot",
     "screenshots"
   ],
-  "author": "Anton <anton@sobes.io>",
+  "author": "Anton <anton@adc.sh>",
   "license": "MIT",
   "dependencies": {
     "cli-table": "^0.3.1",
