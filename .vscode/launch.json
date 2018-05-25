@@ -7,6 +7,24 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/bin/index.js",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/babel-node",
+      "console": "integratedTerminal",
+      "args": [
+        "-a", "Code", "-l"
+      ],
+      "env": {
+        "BABEL_ENV": "test-debug"
+      },
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ],
+      "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Zoroaster",
       "program": "${workspaceFolder}/.bin/zoroaster",
       "args": [

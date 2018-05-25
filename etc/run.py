@@ -2,21 +2,27 @@ import sys
 import Quartz
 import json
 
-windows = Quartz.CGWindowListCopyWindowInfo(
-    Quartz.kCGWindowListOptionOnScreenOnly,
-    Quartz.kCGNullWindowID
-)
-
 def gen_ids_from_info(windows):
-     for win_dict in windows:
-         owner = win_dict.get('kCGWindowOwnerName', '')
-         name = win_dict.get('kCGWindowName', '')
-         num = win_dict.get('kCGWindowNumber', '')
-         pid = win_dict.get('kCGWindowOwnerPID', '')
+    for win_dict in windows:
+        num = win_dict.get('kCGWindowNumber', '')
+        owner = win_dict.get('kCGWindowOwnerName', '')
+        name = win_dict.get('kCGWindowName', '')
+        pid = win_dict.get('kCGWindowOwnerPID', '')
 
-         yield num, owner, name, pid
+        yield num, owner, name, pid
 
-print >> sys.stderr, windows
+def run(cont):
+    windows = Quartz.CGWindowListCopyWindowInfo(
+        Quartz.kCGWindowListOptionOnScreenOnly,
+        Quartz.kCGNullWindowID
+    )
 
-winList = list(gen_ids_from_info(windows))
-print json.dumps(winList)
+    winList = list(gen_ids_from_info(windows))
+    print >> sys.stderr, json.dumps(winList)
+
+    if cont:
+        sys.stdin.readline()
+        run(True)
+
+c = len(sys.argv) > 1
+run(c)
