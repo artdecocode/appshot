@@ -12,10 +12,13 @@
     "appshot": "bin/index.js"
   },
   "scripts": {
-    "test": "zoroaster test",
+    "t": "ZOROASTER_TIMEOUT=5000 zoroaster -b",
+    "test": "yarn t test/spec",
+    "start": "babel-node bin",
     "python": "python etc/run.py",
     "list": "node bin/run2",
-    "chrome": "DEBUG=main bin/run2.js --app Chrome --capture --no-empty-title",
+    "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
+    "c": "babel-node open_chrome",
     "lint": "eslint .",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
   },
@@ -29,12 +32,15 @@
   "license": "MIT",
   "dependencies": {
     "cli-table": "0.3.1",
-    "debug": "3.1.0",
-    "log-rotate": "0.2.8",
-    "uuid": "3.2.1",
-    "yargs": "11.0.0"
+    "spawncommand": "2.0.1",
+    "uuid": "3.2.1"
   },
   "devDependencies": {
+    "@babel/core": "7.0.0-beta.48",
+    "@babel/node": "7.0.0-beta.48",
+    "@babel/plugin-syntax-object-rest-spread": "7.0.0-beta.48",
+    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.48",
+    "@babel/register": "7.0.0-beta.48",
     "eslint": "4.19.1",
     "eslint-config-artdeco": "1.0.0",
     "selenium-webdriver": "4.0.0-alpha.1",
