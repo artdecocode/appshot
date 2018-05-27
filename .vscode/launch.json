@@ -8,37 +8,41 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/bin/index.js",
+      "program": "${workspaceFolder}/src/bin/index.js",
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/babel-node",
       "console": "integratedTerminal",
       "args": [
-        "-a", "Code", "-l"
+        "-c",
+        "-a", "Code", "-t", "appshot",
+        "-f", "debug.gif",
+        "--wait", "0"
       ],
       "env": {
-        "BABEL_ENV": "test-debug"
+        "BABEL_ENV": "debug",
+        "NODE_DEBUG": "appshot",
       },
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
+      // "skipFiles": [
+      //   "<node_internals>/**/*.js"
+      // ],
       "sourceMaps": true
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Launch Zoroaster",
-      "program": "${workspaceFolder}/.bin/zoroaster",
+      "program": "${workspaceFolder}/node_modules/.bin/zoroaster",
       "args": [
-        "test/spec/index.js",
+        "test/spec/PythonStream.js",
         "-b",
         "-w"
       ],
       "env": {
+        "BABEL_ENV": "debug",
+        "NODE_DEBUG": "appshot",
         "ZOROASTER_TIMEOUT": "9999999"
       },
       "console": "integratedTerminal",
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
+
       "sourceMaps": true
     }
   ]

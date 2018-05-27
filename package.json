@@ -9,31 +9,42 @@
     "bin"
   ],
   "bin": {
-    "appshot": "bin/index.js"
+    "appshot": "build/bin/index.js"
   },
   "scripts": {
     "t": "ZOROASTER_TIMEOUT=5000 zoroaster -b",
     "test": "yarn t test/spec",
-    "start": "babel-node bin",
+    "start": "node src/bin/register",
     "python": "python etc/run.py",
     "list": "node bin/run2",
     "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
     "c": "babel-node open_chrome",
     "lint": "eslint .",
+    "build": "babel src --out-dir build --source-maps",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
   },
   "keywords": [
-    "app",
+    "gif",
     "macOS",
+    "mac",
     "screenshot",
-    "screenshots"
+    "screen",
+    "capture",
+    "screencast"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
   "dependencies": {
     "cli-table": "0.3.1",
+    "concat-frames": "1.0.3",
+    "gif-stream": "1.1.0",
+    "gifsicle": "3.0.4",
+    "neuquant": "1.0.2",
+    "reloquent": "0.2.0",
     "spawncommand": "2.0.1",
-    "uuid": "3.2.1"
+    "uuid": "3.2.1",
+    "window-info": "1.0.2",
+    "wrote": "1.4.0"
   },
   "devDependencies": {
     "@babel/core": "7.0.0-beta.48",

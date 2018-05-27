@@ -13,6 +13,8 @@ npm i -g appshot
 
 After installing globally, the program can be run. There are two modes documented below.
 
+![appshot gif][appshot.gif]
+
 ### List (default): list all windows
 
 List all windows via Quartz (through a python script, no bindings).
