@@ -1,16 +1,9 @@
 import spawn from 'spawncommand'
 import { Transform } from 'stream'
-import { erase } from 'wrote'
-import GIFDecoder from 'gif-stream/decoder'
-import { createReadStream } from 'fs'
-import neuquant from 'neuquant'
-import concat from 'concat-frames'
-
-import { resolve, basename, parse } from 'path'
+import { resolve, parse } from 'path'
 import { tmpdir } from 'os'
-
-// import PNG from 'png-js'
 import { debuglog } from 'util'
+
 const LOG = debuglog('appshot')
 
 /**
@@ -20,29 +13,24 @@ export default class CaptureStream extends Transform {
   constructor({ cursor, noShadow, file = 'appshot.gif' }) {
     super({
       objectMode: true,
-      highWaterMark: 1,
     })
     this.cursor = cursor
     this.noShadow = noShadow
-    this.dimensions = null
     this.filetype = 'gif'
     this.i = 0
 
     const { name } = parse(file)
     this.name = name
   }
-  _read(size) {
-    // console.log('capture _read request')
-    super._read(size)
-  }
   /**
-   *
    * @param {number} winid
    * @param {*} encoding
    * @param {*} next
    */
   async _transform(winid, encoding, next) {
-    LOG('<CAPTURE TRANSFORM>')
+    const d = new Date()
+    LOG('<CAPTURE transform at %s:%s.%s>', d.getMinutes(), d.getSeconds(), d.getMilliseconds())
+
     try {
       const path = await capture({
         winid,
@@ -53,36 +41,10 @@ export default class CaptureStream extends Transform {
           return `${this.name}-${this.i}`
         },
       })
-      LOG('  captured')
-
-      await new Promise((r, j) => {
-        const rs = createReadStream(path)
-        rs
-          .pipe(new GIFDecoder)
-          .pipe(new neuquant.Stream)
-          .pipe(concat(async (frames) => {
-            const [frame] = frames
-            LOG('  pushing %sx%s', frame.width, frame.height)
-            this.push(frame)
-            await erase({ path })
-            LOG('  erased temp file')
-            this.i++
-            r()
-          }))
-          .on('error', (err) => {
-            j(err)
-          })
-
-        rs
-          .on('error', (err) => {
-            j(err)
-          })
-      })
-      LOG('</ CAPTURE TRANSFORM>')
+      this.push(path)
+      this.i++
       next()
     } catch (err) {
-      LOG('  %s', err.message)
-      LOG('</ CAPTURE TRANSFORM>')
       next(err)
     }
   }
@@ -121,4 +83,3 @@ const capture = async ({
   if (stderr) throw new Error(stderr)
   return path
 }
-

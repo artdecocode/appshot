@@ -12,6 +12,7 @@ const {
   delay = 1000,
   wait = 2,
   noEmpty,
+  resize,
 } = getArgs(process.argv)
 
 ;(async () => {
@@ -22,6 +23,7 @@ const {
       app,
       title,
       delay,
+      resize,
     })
   } else {
     await List({

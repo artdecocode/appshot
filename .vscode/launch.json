@@ -15,15 +15,16 @@
         "-c",
         "-a", "Code", "-t", "appshot",
         "-f", "debug.gif",
-        "--wait", "0"
+        "--wait", "0",
+        "-z", "500"
       ],
       "env": {
         "BABEL_ENV": "debug",
         "NODE_DEBUG": "appshot",
       },
-      // "skipFiles": [
-      //   "<node_internals>/**/*.js"
-      // ],
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ],
       "sourceMaps": true
     },
     {

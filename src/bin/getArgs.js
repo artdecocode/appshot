@@ -11,6 +11,9 @@ const find = (argv, long, short, bool) => {
 }
 
 export default ([ ,, ...argv ]) => {
+  /** @type {string} */
+  const [first] = argv
+  const simpleTitle = first.startsWith('-') ? undefined : first
   const capture = find(argv, 'capture', 'c', true)
   const live = find(argv, 'live', 'l', true)
 
@@ -20,6 +23,7 @@ export default ([ ,, ...argv ]) => {
   const file = find(argv, 'file', 'f')
   const wait = find(argv, 'wait', 'w')
   const noEmpty = find(argv, 'no-empty', 'e')
+  const resize = find(argv, 'resize', 'z')
 
   return {
     /**
@@ -34,11 +38,12 @@ export default ([ ,, ...argv ]) => {
     /**
      * Window title to filter by.
      */
-    title,
+    title: title || simpleTitle,
     delay,
     file,
     noEmpty,
     wait: wait ? parseInt(wait) : wait,
     screenshotDir: undefined,
+    resize,
   }
 }

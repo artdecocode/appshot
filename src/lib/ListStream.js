@@ -1,5 +1,8 @@
 import WindowInfo from 'window-info'
 import { Transform } from 'stream'
+import { debuglog } from 'util'
+
+const LOG = debuglog('appshot')
 
 export default class ListStream extends Transform {
   constructor({ app, title, noEmpty, delay }) {
@@ -17,10 +20,13 @@ export default class ListStream extends Transform {
     })
     this.wi.pipe(this)
   }
-  destroy(err) {
+  _destroy(err) {
     this.wi.destroy(err)
   }
   _transform(data, encoding, next) {
+    next()
+    const date = new Date()
+    LOG('<LIST at %s:%s.%s>', date.getMinutes(), date.getSeconds(), date.getMilliseconds())
     const d = data
       .filter(([,a]) => {
         if (!this.app) return true
@@ -32,6 +38,5 @@ export default class ListStream extends Transform {
         return this.tre.test(t)
       })
     this.push(d)
-    next()
   }
 }
