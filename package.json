@@ -1,12 +1,10 @@
 {
   "name": "appshot",
   "version": "1.1.0",
-  "description": " A command-line tool in Node.js to take screen-shots of different windows.",
+  "description": " A command-line tool record gifs of apps on MacOS.",
   "main": "src/api.js",
   "files": [
-    "src",
-    "etc",
-    "bin"
+    "build"
   ],
   "bin": {
     "appshot": "build/bin/index.js"
@@ -25,11 +23,12 @@
   },
   "keywords": [
     "gif",
-    "macOS",
+    "MacOS",
     "mac",
-    "screenshot",
-    "screen",
     "capture",
+    "screencapture",
+    "video",
+    "record",
     "screencast"
   ],
   "author": "Anton <anton@adc.sh>",

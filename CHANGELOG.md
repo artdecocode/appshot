@@ -1,3 +1,10 @@
+## [2.0.0](https://github.com/artdecocode/appshot/compare/v1.1.0...v2.0.0) (2018-05-31)
+
+- [feature] record gifs
+- [ecma] rewrite in babel, add build
+- [interface] change CLI to record automatically and list in explicit list mode
+- [code] easier argument parsing
+
 ## [1.1.0](https://github.com/artdecocode/appshot/compare/v1.0.1...v1.1.0) (2017-02-01)
 
 - run in node 4
