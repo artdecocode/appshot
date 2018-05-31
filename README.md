@@ -16,8 +16,14 @@ A CLI tool to record gifs of apps on MacOS.
 After installing globally, the program can be run. Pass a part of the window title to start recording.
 
 ```
+appshot part_of_window_title
+```
+
+```
 appshot README.md
 ```
+
+If more that one window is found, the recording won't start.
 
 ### `--list`, `-l`
 
