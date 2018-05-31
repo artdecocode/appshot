@@ -13,9 +13,8 @@ const find = (argv, long, short, bool) => {
 export default ([ ,, ...argv ]) => {
   /** @type {string} */
   const [first] = argv
-  const simpleTitle = first.startsWith('-') ? undefined : first
-  const capture = find(argv, 'capture', 'c', true)
-  const live = find(argv, 'live', 'l', true)
+  const simpleTitle = first && first.startsWith('-') ? undefined : first
+  const list = find(argv, 'list', 'l', true)
 
   const app = find(argv, 'app', 'a')
   const title = find(argv, 'title', 't')
@@ -24,13 +23,13 @@ export default ([ ,, ...argv ]) => {
   const wait = find(argv, 'wait', 'w')
   const noEmpty = find(argv, 'no-empty', 'e')
   const resize = find(argv, 'resize', 'z')
+  const colors = find(argv, 'colors', 'c')
 
   return {
     /**
-     * Should the program take a screenshot.
+     * Should the program just list results instead of taking a recording.
      */
-    capture,
-    live,
+    list,
     /**
      * App name to filter by.
      */
@@ -45,5 +44,6 @@ export default ([ ,, ...argv ]) => {
     wait: wait ? parseInt(wait) : wait,
     screenshotDir: undefined,
     resize,
+    colors,
   }
 }

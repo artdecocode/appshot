@@ -29,6 +29,7 @@ export default async function Capture({
   title,
   delay,
   resize,
+  colors,
 }) {
   let file = _file
   if (!file) {
@@ -41,15 +42,15 @@ export default async function Capture({
     DEBUG ? LOG('\nSIGING\n') : console.log('\nStopping recording')
   })
 
-  console.log('Starting recording')
+  console.log('Starting recording (ctrl-c to stop)')
   const files = []
 
   pump(
     new ListStream({ app, title, delay }),
     new WinIdStream,
     new CaptureStream({
-      noShadow: true,
       file,
+      noShadow: true,
     }),
     new Transform({
       transform(path, enc, next) {
@@ -65,12 +66,16 @@ export default async function Capture({
       LOG('END')
       if (!files.length) return
 
-      await gifsicle({ resize, file, files, delay })
+      await gifsicle({ resize, file, files, delay, colors })
       const info = lstatSync(file)
       ; (DEBUG ? LOG : console.log)('saved %s (%s bytes)', file, info.size)
       await Promise.all(files.map(async path => {
-        await erase({ path })
-        LOG('erased %s', path)
+        try {
+          await erase({ path })
+          LOG('erased %s', path)
+        } catch (err) {
+          LOG(err)
+        }
       }))
     }
   )

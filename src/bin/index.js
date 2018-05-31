@@ -1,11 +1,10 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
 import getArgs from './getArgs'
 import Capture from './Capture'
 import List from './List'
 
 const {
-  live,
-  capture,
+  list,
   app,
   title,
   file,
@@ -13,10 +12,18 @@ const {
   wait = 2,
   noEmpty,
   resize,
+  colors,
 } = getArgs(process.argv)
 
 ;(async () => {
-  if (capture) {
+  if (list) {
+    await List({
+      app,
+      title,
+      delay,
+      noEmpty,
+    })
+  } else {
     await Capture({
       wait,
       file,
@@ -24,14 +31,7 @@ const {
       title,
       delay,
       resize,
-    })
-  } else {
-    await List({
-      app,
-      title,
-      delay,
-      noEmpty,
-      live,
+      colors,
     })
   }
 })()

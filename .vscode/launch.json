@@ -8,12 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/src/bin/index.js",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/babel-node",
+      "program": "${workspaceFolder}/src/bin/register.js",
       "console": "integratedTerminal",
       "args": [
-        "-c",
-        "-a", "Code", "-t", "appshot",
+        "appshot",
         "-f", "debug.gif",
         "--wait", "0",
         "-z", "500"
