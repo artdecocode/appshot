@@ -48,7 +48,6 @@ const T = {
 ...1
 Starting recording (ctrl-c to stop)
 `)
-    debugger
   },
 }
 

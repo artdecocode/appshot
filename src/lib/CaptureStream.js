@@ -10,13 +10,13 @@ const LOG = debuglog('appshot')
  * This transform stream will take a screenshot of a read window id and push a decoded PNG image.
  */
 export default class CaptureStream extends Transform {
-  constructor({ cursor, noShadow, file = 'appshot.gif' }) {
+  constructor({ cursor, noShadow, file = 'appshot.gif', filetype = 'gif' }) {
     super({
       objectMode: true,
     })
     this.cursor = cursor
     this.noShadow = noShadow
-    this.filetype = 'gif'
+    this.filetype = filetype
     this.i = 0
 
     const { name } = parse(file)

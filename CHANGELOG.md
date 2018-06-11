@@ -1,3 +1,8 @@
+## [2.1.0](https://github.com/artdecocode/appshot/compare/v2.0.0...v2.1.0) (2018-06-11)
+
+- [feature] save with `imagemagic`, specify max number of frames with `-m`
+- [dep] use `argufy`
+
 ## [2.0.0](https://github.com/artdecocode/appshot/compare/v1.1.0...v2.0.0) (2018-05-31)
 
 - [feature] record gifs

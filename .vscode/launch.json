@@ -13,8 +13,9 @@
       "args": [
         "appshot",
         "-f", "debug.gif",
-        "--wait", "0",
-        "-z", "500"
+        "-w", "0",
+        "-z", "500",
+        "-m", "1"
       ],
       "env": {
         "BABEL_ENV": "debug",

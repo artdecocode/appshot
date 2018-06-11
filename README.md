@@ -11,6 +11,16 @@ A CLI tool to record gifs of apps on MacOS.
 
 ![appshot gif][appshot-appshot.gif]
 
+## ImageMagic convert
+
+The `convert` utility from ImageMagic library should be installed to allow saving optimised gifs.
+
+```sh
+brew install imagemagic
+```
+
+Otherwise, unoptimised records can be taken with `-g` flag.
+
 ## CLI
 
 After installing globally, the program can be run. Pass a part of the window title to start recording.
@@ -94,7 +104,11 @@ Directory in which to save the gif.
 
 ### `--gifsicle`, `-g`
 
-Save in unoptimised gif format. This can be used when imagemagic is not installed, however not recommended as the image size is not optimal.
+Save in unoptimised gif format. This can be used when `imagemagic` is not installed, however not recommended as the image size is not optimal.
+
+### `--max`, `-m`
+
+Capture this number of frames at max and stop recording.
 
 <!-- ### `--focus`, `-F`
 

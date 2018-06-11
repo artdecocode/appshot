@@ -5,7 +5,8 @@ import { debuglog } from 'util'
 import { erase } from 'wrote'
 import pump from 'pump'
 import { WinIdStream, getFile } from '../lib'
-import gifsicle from '../lib/gifsicle'
+import gif from '../lib/gifsicle'
+import convert from '../lib/convert'
 import ListStream from '../lib/ListStream'
 import CaptureStream from '../lib/CaptureStream'
 import { resolve } from 'path'
@@ -30,8 +31,10 @@ export default async function Capture({
   title,
   delay,
   resize,
-  colors,
+  colors = 256,
   dir = '',
+  gifsicle,
+  max,
 }) {
   let file = _file
   if (!file) {
@@ -48,20 +51,30 @@ export default async function Capture({
   console.log('Starting recording (ctrl-c to stop)')
   const files = []
 
+  const ls = new ListStream({ app, title, delay })
+  const wis = new WinIdStream
+  const cs = new CaptureStream({
+    file,
+    noShadow: true,
+    filetype: gifsicle ? 'gif' : 'png',
+  })
+  const ts = new Transform({
+    async transform(path, enc, next) {
+      const p = `${path}`
+      files.push(p)
+      console.log(files.length)
+      if (max && files.length >= max) {
+        ls.destroy()
+      }
+      next()
+    },
+  })
+
   pump(
-    new ListStream({ app, title, delay }),
-    new WinIdStream,
-    new CaptureStream({
-      file,
-      noShadow: true,
-    }),
-    new Transform({
-      transform(path, enc, next) {
-        files.push(`${path}`)
-        console.log(files.length)
-        next()
-      },
-    }),
+    ls,
+    wis,
+    cs,
+    ts,
     async (error) => {
       if (error) {
         DEBUG ? LOG(error.stack) : console.log(error.message)
@@ -69,9 +82,18 @@ export default async function Capture({
       LOG('END')
       if (!files.length) return
 
-      await gifsicle({ resize, file, files, delay, colors })
-      const info = lstatSync(file)
-      ; (DEBUG ? LOG : console.log)('saved %s (%s bytes)', file, info.size)
+      let size
+      if (gifsicle) {
+        await gif({ resize, file, files, delay, colors })
+        size = getSize(file)
+      } else {
+        // image magic
+        await convert({ resize, file, files })
+        getSize(file)
+        await gif({ file, files: [file], delay })
+        size = getSize(file)
+      }
+      console.log('saved %s (%s bytes)', file, size)
       await Promise.all(files.map(async path => {
         try {
           await erase({ path })
@@ -82,4 +104,15 @@ export default async function Capture({
       }))
     }
   )
+}
+
+const getSize = (file) => {
+  try {
+    const info = lstatSync(file)
+    LOG('%s: %s bytes', file, info.size)
+    return info.size
+    // ; (DEBUG ? LOG : console.log)('saved %s (%s bytes)', file, info.size)
+  } catch (err) {
+    // LOG(err.message)
+  }
 }

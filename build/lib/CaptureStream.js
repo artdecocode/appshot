@@ -26,14 +26,15 @@ class CaptureStream extends _stream.Transform {
   constructor({
     cursor,
     noShadow,
-    file = 'appshot.gif'
+    file = 'appshot.gif',
+    filetype = 'gif'
   }) {
     super({
       objectMode: true
     });
     this.cursor = cursor;
     this.noShadow = noShadow;
-    this.filetype = 'gif';
+    this.filetype = filetype;
     this.i = 0;
     const {
       name
