@@ -88,6 +88,14 @@ Resize to this width, keeping height proportionate.
 
 How many colors to use in the output gif.
 
+### `--dir`, `-D`
+
+Directory in which to save the gif.
+
+### `--gifsicle`, `-g`
+
+Save in unoptimised gif format. This can be used when imagemagic is not installed, however not recommended as the image size is not optimal.
+
 <!-- ### `--focus`, `-F`
 
 Bring the window to the foreground using a snippet:

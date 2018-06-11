@@ -24,6 +24,7 @@ export default ([ ,, ...argv ]) => {
   const noEmpty = find(argv, 'no-empty', 'e')
   const resize = find(argv, 'resize', 'z')
   const colors = find(argv, 'colors', 'c')
+  const dir = find(argv, 'dir', 'D')
 
   return {
     /**
@@ -41,6 +42,7 @@ export default ([ ,, ...argv ]) => {
     delay,
     file,
     noEmpty,
+    dir,
     wait: wait ? parseInt(wait) : wait,
     screenshotDir: undefined,
     resize,

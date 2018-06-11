@@ -13,6 +13,7 @@ const {
   noEmpty,
   resize,
   colors,
+  dir,
 } = getArgs(process.argv)
 
 ;(async () => {
@@ -32,6 +33,7 @@ const {
       delay,
       resize,
       colors,
+      dir,
     })
   }
 })()

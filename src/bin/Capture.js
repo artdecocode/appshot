@@ -8,6 +8,7 @@ import { WinIdStream, getFile } from '../lib'
 import gifsicle from '../lib/gifsicle'
 import ListStream from '../lib/ListStream'
 import CaptureStream from '../lib/CaptureStream'
+import { resolve } from 'path'
 
 const LOG = debuglog('appshot')
 const DEBUG = /appshot/.test(process.env.NODE_DEBUG)
@@ -30,11 +31,13 @@ export default async function Capture({
   delay,
   resize,
   colors,
+  dir = '',
 }) {
   let file = _file
   if (!file) {
     file = await getFile({ app, title })
   }
+  file = resolve(dir, file)
 
   await timeout(wait)
 

@@ -12,11 +12,12 @@
   "scripts": {
     "t": "ZOROASTER_TIMEOUT=5000 zoroaster -b",
     "test": "yarn t test/spec",
-    "start": "node src/bin/register",
+    "start": "node build/bin",
     "python": "python etc/run.py",
     "list": "node bin/run2",
     "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
     "c": "babel-node open_chrome",
+    "dev": "node src/bin/register",
     "lint": "eslint .",
     "build": "babel src --out-dir build --source-maps",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"

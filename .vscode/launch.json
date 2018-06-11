@@ -31,7 +31,7 @@
       "name": "Launch Zoroaster",
       "program": "${workspaceFolder}/node_modules/.bin/zoroaster",
       "args": [
-        "test/spec/PythonStream.js",
+        "test/spec/index.js",
         "-b",
         "-w"
       ],
@@ -40,9 +40,7 @@
         "NODE_DEBUG": "appshot",
         "ZOROASTER_TIMEOUT": "9999999"
       },
-      "console": "integratedTerminal",
-
-      "sourceMaps": true
+      "console": "integratedTerminal"
     }
   ]
 }
