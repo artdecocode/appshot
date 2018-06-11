@@ -24,11 +24,6 @@ const timeout = async (w) => {
   }
 }
 
-// const end = async (s) => {
-//   await new Promise((r) => {
-//     s.end(r)
-//   })
-// }
 export default async function Capture({
   wait,
   file: _file,
@@ -65,17 +60,13 @@ export default async function Capture({
   })
   const ts = new Transform({
     async transform(path, enc, next) {
-      // const _cs = cs
-      // const _ls = ls
-      // const _wis = wis
       const p = `${path}`
       files.push(p)
       console.log(files.length)
       if (max && files.length >= max) {
-        ls.destroy(new Error('error'))
-      } else {
-        next()
+        ls.destroy()
       }
+      next()
     },
   })
 
@@ -99,7 +90,7 @@ export default async function Capture({
         // image magic
         await convert({ resize, file, files })
         getSize(file)
-        await gif({ file, files: [file], delay, colors })
+        await gif({ file, files: [file], delay })
         size = getSize(file)
       }
       console.log('saved %s (%s bytes)', file, size)
@@ -118,7 +109,7 @@ export default async function Capture({
 const getSize = (file) => {
   try {
     const info = lstatSync(file)
-    LOG('%s: %s', file, info.size)
+    LOG('%s: %s bytes', file, info.size)
     return info.size
     // ; (DEBUG ? LOG : console.log)('saved %s (%s bytes)', file, info.size)
   } catch (err) {

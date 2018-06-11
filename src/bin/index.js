@@ -15,7 +15,7 @@ const {
   colors,
   dir,
   gifsicle,
-  // max,
+  max,
 } = getArgs(process.argv)
 
 ;(async () => {
@@ -37,7 +37,7 @@ const {
       colors,
       dir,
       gifsicle,
-      // max,
+      max,
     })
   }
 })()

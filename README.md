@@ -104,7 +104,11 @@ Directory in which to save the gif.
 
 ### `--gifsicle`, `-g`
 
-Save in unoptimised gif format. This can be used when imagemagic is not installed, however not recommended as the image size is not optimal.
+Save in unoptimised gif format. This can be used when `imagemagic` is not installed, however not recommended as the image size is not optimal.
+
+### `--max`, `-m`
+
+Capture this number of frames at max and stop recording.
 
 <!-- ### `--focus`, `-F`
 
