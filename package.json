@@ -17,7 +17,7 @@
     "list": "node bin/run2",
     "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
     "c": "babel-node open_chrome",
-    "dev": "node src/bin/register",
+    "dev": "NODE_DEBUG=appshot node src/bin/register appshot -w 0",
     "lint": "eslint .",
     "build": "babel src --out-dir build --source-maps",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
@@ -35,7 +35,7 @@
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
   "dependencies": {
-    "argufy": "1.0.0",
+    "argufy": "1.0.1",
     "cli-table": "0.3.1",
     "concat-frames": "1.0.3",
     "gifsicle": "3.0.4",

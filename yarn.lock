@@ -274,9 +274,9 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-argufy@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/argufy/-/argufy-1.0.0.tgz#7e39cdc9ec1a15a2339ef8d211d5bf45f3341f97"
+argufy@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/argufy/-/argufy-1.0.1.tgz#ba172005436d559351f009b0a64cf4df774803d0"
 
 arr-diff@^2.0.0:
   version "2.0.0"

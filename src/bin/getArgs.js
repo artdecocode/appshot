@@ -1,6 +1,20 @@
 import argufy from 'argufy'
 
 export default () => {
+  const config = {
+    list: { short: 'l', boolean: true },
+    title: { short: 't', command: true },
+    app: 'a',
+    delay: { short: 'y', number: true },
+    file: 'f',
+    noEmpty: { short: 'e', boolean: true },
+    dir: 'D',
+    wait: { short: 'w', number: true },
+    resize: { short: 'z', number: true },
+    colors: 'c',
+    max: { short: 'm', number: true },
+    gifsicle: { short: 'g', boolean: true },
+  }
   const {
     list,
     title,
@@ -12,18 +26,9 @@ export default () => {
     wait,
     resize,
     colors,
-  } = argufy({
-    list: { short: 'l', boolean: true },
-    title: { short: 't', command: true },
-    app: 'a',
-    delay: { short: 'y', number: true },
-    file: 'f',
-    noEmpty: { short: 'e', boolean: true },
-    dir: 'D',
-    wait: { short: 'w', number: true },
-    resize: 'z',
-    colors: 'c',
-  }, process.argv)
+    max,
+    gifsicle,
+  } = argufy(config, process.argv)
   return {
     /** @type {string} Should the program just list results instead of taking a recording. */
     list,
@@ -45,37 +50,9 @@ export default () => {
     resize,
     /** @type {number} Adjust to this number of colors. */
     colors,
+    /** @type {number} Maximum number of frames to capture. */
+    max,
+    /** @type {boolean} Whether to save unoptimised. */
+    gifsicle,
   }
 }
-
-// export default ()
-// const find = (argv, long, short, bool) => {
-//   const sre = new RegExp(`-${short}`)
-//   const lre = new RegExp(`--${long}`)
-//   const found = argv.find(a => (sre.test(a) || lre.test(a)))
-//   if (!found) return
-//   if (bool) return true
-//   const i = argv.indexOf(found)
-//   const ia = i + 1
-//   const value = argv[ia]
-//   return value
-// }
-
-// export default ([ ,, ...argv ]) => {
-//   /** @type {string} */
-//   const [first] = argv
-//   const simpleTitle = first && first.startsWith('-') ? undefined : first
-//   const list = find(argv, 'list', 'l', true)
-
-//   const app = find(argv, 'app', 'a')
-//   const title = find(argv, 'title', 't')
-//   const delay = find(argv, 'delay', 'y')
-//   const file = find(argv, 'file', 'f')
-//   const wait = find(argv, 'wait', 'w')
-//   const noEmpty = find(argv, 'no-empty', 'e')
-//   const resize = find(argv, 'resize', 'z')
-//   const colors = find(argv, 'colors', 'c')
-//   const dir = find(argv, 'dir', 'D')
-
-//   return
-// }

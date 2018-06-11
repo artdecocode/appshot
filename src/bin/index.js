@@ -14,7 +14,8 @@ const {
   resize,
   colors,
   dir,
-  imagemagic = true,
+  gifsicle,
+  // max,
 } = getArgs(process.argv)
 
 ;(async () => {
@@ -35,7 +36,8 @@ const {
       resize,
       colors,
       dir,
-      imagemagic,
+      gifsicle,
+      // max,
     })
   }
 })()

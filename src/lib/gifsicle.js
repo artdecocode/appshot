@@ -5,14 +5,14 @@ import { debuglog } from 'util'
 const LOG = debuglog('appshot')
 
 export default async ({
-  resize, file, files, delay, colors = 256,
+  resize, file, files, delay, colors,
 }) => {
   const args = getGifsicleArgs({
     resize,
     colors,
     delay,
-    optimize: 3,
-    disposal: 'background',
+    optimize: 2,
+    // disposal: 'background',
   })
   const allArgs = [...args, ...files, '-o', file]
   LOG('%s %s', 'gifsicle', allArgs.join(' '))
