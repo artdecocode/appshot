@@ -1,6 +1,6 @@
 {
   "name": "appshot",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": " A command-line tool record gifs of apps on MacOS.",
   "main": "src/api.js",
   "files": [
