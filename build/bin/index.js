@@ -18,7 +18,10 @@ const {
   wait = 2,
   noEmpty,
   resize,
-  colors
+  colors,
+  dir,
+  gifsicle,
+  max
 } = (0, _getArgs.default)(process.argv);
 
 (async () => {
@@ -37,7 +40,10 @@ const {
       title,
       delay,
       resize,
-      colors
+      colors,
+      dir,
+      gifsicle,
+      max
     });
   }
 })(); // function focus(app) {
