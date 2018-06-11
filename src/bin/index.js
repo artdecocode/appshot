@@ -14,6 +14,7 @@ const {
   resize,
   colors,
   dir,
+  imagemagic = true,
 } = getArgs(process.argv)
 
 ;(async () => {
@@ -34,6 +35,7 @@ const {
       resize,
       colors,
       dir,
+      imagemagic,
     })
   }
 })()
