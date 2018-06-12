@@ -1,3 +1,7 @@
+## [2.1.1](https://github.com/artdecocode/appshot/compare/v2.1.0...v2.1.1) (2018-06-12)
+
+- [package] change maintainers field.
+
 ## [2.1.0](https://github.com/artdecocode/appshot/compare/v2.0.0...v2.1.0) (2018-06-11)
 
 - [feature] save with `imagemagic`, specify max number of frames with `-m`
