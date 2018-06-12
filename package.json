@@ -17,6 +17,7 @@
     "list": "node bin/run2",
     "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
     "c": "babel-node open_chrome",
+    "s": "node build/bin -f s.gif -T 23 -a",
     "dev": "NODE_DEBUG=appshot node src/bin/register appshot -w 0 -f appshot-appshot.gif",
     "deva": "NODE_DEBUG=appshot node src/bin/register -f deva.gif -a",
     "doc": "doc -t README-source.md -r -o README.md",
