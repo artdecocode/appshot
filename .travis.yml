@@ -3,4 +3,4 @@ node_js:
   - "8"
 os:
   - osx
-script: 'yarn t'
+script: 'yarn test'
