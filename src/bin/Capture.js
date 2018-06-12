@@ -35,6 +35,7 @@ export default async function Capture({
   dir = '',
   gifsicle,
   max,
+  chopTop,
 }) {
   let file = _file
   if (!file) {
@@ -88,7 +89,7 @@ export default async function Capture({
         size = getSize(file)
       } else {
         // image magic
-        await convert({ resize, file, files })
+        await convert({ resize, file, files, chopTop })
         getSize(file)
         await gif({ file, files: [file], delay })
         size = getSize(file)

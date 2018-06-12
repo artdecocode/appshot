@@ -27,6 +27,7 @@ A CLI tool to record gifs of apps on MacOS.
   * [`--dir`, `-D`](#--dir--d)
   * [`--gifsicle`, `-g`](#--gifsicle--g)
   * [`--max`, `-m`](#--max--m)
+  * [`--chopTop`, `-T`: Chop Top](#--choptop--t-chop-top)
 
 ## ImageMagic convert
 
@@ -126,6 +127,10 @@ Save in unoptimised gif format. This can be used when `imagemagic` is not instal
 ### `--max`, `-m`
 
 Capture this number of frames at max and stop recording.
+
+### `--chopTop`, `-T`: Chop Top
+
+How many pixels to take off top of each image. Pass `23` value (on non-retina displays) to remove the window headers, which can change title or status and lead to de-optimisation.
 
 ---
 

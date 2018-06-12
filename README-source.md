@@ -114,6 +114,10 @@ Save in unoptimised gif format. This can be used when `imagemagic` is not instal
 
 Capture this number of frames at max and stop recording.
 
+### `--chopTop`, `-T`: Chop Top
+
+How many pixels to take off top of each image. Pass `23` value (on non-retina displays) to remove the window headers, which can change title or status and lead to de-optimisation.
+
 <!-- ### `--focus`, `-F`
 
 Bring the window to the foreground using a snippet:

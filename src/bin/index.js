@@ -16,6 +16,7 @@ const {
   dir,
   gifsicle,
   max,
+  chopTop,
 } = getArgs(process.argv)
 
 ;(async () => {
@@ -38,6 +39,7 @@ const {
       dir,
       gifsicle,
       max,
+      chopTop,
     })
   }
 })()

@@ -14,6 +14,7 @@ export default () => {
     colors: 'c',
     max: { short: 'm', number: true },
     gifsicle: { short: 'g', boolean: true },
+    chopTop: { short: 'T', number: true },
   }
   const {
     list,
@@ -28,6 +29,7 @@ export default () => {
     colors,
     max,
     gifsicle,
+    chopTop,
   } = argufy(config, process.argv)
   return {
     /** @type {string} Should the program just list results instead of taking a recording. */
@@ -54,5 +56,7 @@ export default () => {
     max,
     /** @type {boolean} Whether to save unoptimised. */
     gifsicle,
+    /** @type {number} How many pixels to trim off top */
+    chopTop,
   }
 }
