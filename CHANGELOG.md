@@ -1,5 +1,9 @@
 ## 12 June 2018
 
+### [2.2.0](https://github.com/artdecocode/appshot/compare/v2.1.2...v2.2.0)
+
+- [feature] Trim pixels from top with `--chopTop` (`-T`).
+
 ### [2.1.2](https://github.com/artdecocode/appshot/compare/v2.1.1...v2.1.2)
 
 - [doc] add table of contents via `documentary`.
