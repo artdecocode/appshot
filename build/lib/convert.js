@@ -13,17 +13,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const LOG = (0, _util.debuglog)('appshot');
 
+const getChopTop = (chopTop = 0) => {
+  if (chopTop) {
+    return ['-gravity', 'North', '-chop', `x${chopTop}`];
+  }
+
+  return [];
+};
+
 var _default = async ({
   resize,
   file,
   files,
-  delay
+  delay,
+  chopTop
 }) => {
   const args = getConvertArgs({
     resize,
     delay
   });
-  const allArgs = [...files, ...args, file];
+  const cp = getChopTop(chopTop);
+  const allArgs = [...cp, ...files, ...args, file];
   LOG('%s %s', 'convert', allArgs.join(' '));
   const {
     stderr,
@@ -42,7 +52,8 @@ const getConvertArgs = ({
   resize,
   colors,
   optimize = 'OptimizeFrame',
-  delay // disposal,
+  delay,
+  chopTop // disposal,
 
 } = {}) => {
   const args = [];

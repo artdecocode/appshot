@@ -46,6 +46,10 @@ var _default = () => {
     gifsicle: {
       short: 'g',
       boolean: true
+    },
+    chopTop: {
+      short: 'T',
+      number: true
     }
   };
   const {
@@ -60,7 +64,8 @@ var _default = () => {
     resize,
     colors,
     max,
-    gifsicle
+    gifsicle,
+    chopTop
   } = (0, _argufy.default)(config, process.argv);
   return {
     /** @type {string} Should the program just list results instead of taking a recording. */
@@ -97,7 +102,10 @@ var _default = () => {
     max,
 
     /** @type {boolean} Whether to save unoptimised. */
-    gifsicle
+    gifsicle,
+
+    /** @type {number} How many pixels to trim off top */
+    chopTop
   };
 };
 

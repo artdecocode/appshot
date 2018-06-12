@@ -21,7 +21,8 @@ const {
   colors,
   dir,
   gifsicle,
-  max
+  max,
+  chopTop
 } = (0, _getArgs.default)(process.argv);
 
 (async () => {
@@ -43,7 +44,8 @@ const {
       colors,
       dir,
       gifsicle,
-      max
+      max,
+      chopTop
     });
   }
 })(); // function focus(app) {

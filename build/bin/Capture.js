@@ -53,7 +53,8 @@ async function Capture({
   colors = 256,
   dir = '',
   gifsicle,
-  max
+  max,
+  chopTop
 }) {
   let file = _file;
 
@@ -119,7 +120,8 @@ async function Capture({
       await (0, _convert.default)({
         resize,
         file,
-        files
+        files,
+        chopTop
       });
       getSize(file);
       await (0, _gifsicle.default)({
