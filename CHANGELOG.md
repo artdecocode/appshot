@@ -1,4 +1,10 @@
-## [2.1.1](https://github.com/artdecocode/appshot/compare/v2.1.0...v2.1.1) (2018-06-12)
+## 12 June 2018
+
+### [2.1.2](https://github.com/artdecocode/appshot/compare/v2.1.1...v2.1.2)
+
+- [doc] add table of contents via `documentary`.
+
+### [2.1.1](https://github.com/artdecocode/appshot/compare/v2.1.0...v2.1.1)
 
 - [package] change maintainers field.
 
