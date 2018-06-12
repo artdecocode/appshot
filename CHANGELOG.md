@@ -35,4 +35,3 @@ readme with s3 images, and scale doc screenshots
 - test: 1 zoroaster test which spawns `./run2.js` in bin and shows current windows
 as a child process, which would throw an error if bin exited with status not 0.
 - npm package: appshot
-

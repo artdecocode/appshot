@@ -18,6 +18,7 @@
     "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
     "c": "babel-node open_chrome",
     "dev": "NODE_DEBUG=appshot node src/bin/register appshot -w 0",
+    "doc": "doc -t README-source.md -r -o README.md",
     "lint": "eslint .",
     "build": "babel src --out-dir build --source-maps",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
@@ -38,6 +39,7 @@
     "argufy": "1.0.1",
     "cli-table": "0.3.1",
     "concat-frames": "1.0.3",
+    "documentary": "1.0.1",
     "gifsicle": "3.0.4",
     "pump": "3.0.0",
     "reloquent": "0.2.0",
