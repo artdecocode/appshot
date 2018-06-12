@@ -11,6 +11,10 @@ A CLI tool to record gifs of apps on MacOS.
 
 ![appshot gif][appshot-appshot.gif]
 
+## Table Of Contents
+
+%TOC%
+
 ## ImageMagic convert
 
 The `convert` utility from ImageMagic library should be installed to allow saving optimised gifs.
