@@ -1,3 +1,9 @@
+## 22 August 2018
+
+### [2.2.1](https://github.com/artdecocode/appshot/compare/v2.2.0...v2.2.1)
+
+- [package] Add missing GitHub repository field.
+
 ## 12 June 2018
 
 ### [2.2.0](https://github.com/artdecocode/appshot/compare/v2.1.2...v2.2.0)
