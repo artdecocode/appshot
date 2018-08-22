@@ -25,6 +25,10 @@
     "build": "babel src --out-dir build --source-maps",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/artdecocode/appshot.git"
+  },
   "keywords": [
     "gif",
     "MacOS",
