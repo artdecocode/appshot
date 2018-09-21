@@ -42,26 +42,21 @@
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
   "dependencies": {
-    "argufy": "1.0.1",
+    "argufy": "1.2.1",
     "cli-table": "0.3.1",
     "concat-frames": "1.0.3",
     "gifsicle": "3.0.4",
     "pump": "3.0.0",
-    "reloquent": "0.2.0",
-    "spawncommand": "2.0.1",
-    "uuid": "3.2.1",
-    "window-info": "1.0.2",
+    "reloquent": "1.0.6",
+    "spawncommand": "2.1.0",
+    "uuid": "3.3.2",
+    "window-info": "1.0.4",
     "wrote": "1.4.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.49",
-    "@babel/core": "7.0.0-beta.49",
-    "@babel/plugin-syntax-object-rest-spread": "7.0.0-beta.49",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.49",
-    "@babel/register": "7.0.0-beta.49",
-    "documentary": "1.0.1",
-    "eslint": "4.19.1",
-    "eslint-config-artdeco": "1.0.0",
-    "zoroaster": "2.1.0"
+    "alamode": "1.5.1",
+    "documentary": "1.18.2",
+    "eslint-config-artdeco": "1.0.1",
+    "zoroaster": "3.5.1"
   }
 }
