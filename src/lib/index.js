@@ -1,8 +1,6 @@
 import { Transform } from 'stream'
-import { askQuestions } from 'reloquent'
+import { askSingle } from 'reloquent'
 import { debuglog } from 'util'
-
-const LOG = debuglog('appshot')
 
 /**
  * Transform a list of ids into a single window id.
@@ -36,16 +34,14 @@ export class WinIdStream extends Transform {
 }
 
 export const getFile = async ({ app, title }) => {
-  const file = await askQuestions({
-    file: {
-      text: 'gif name',
-      async getDefault() {
-        const parts = ['appshot']
-        if (app) parts.push(`-${app}`)
-        if (title) parts.push(`-${title}`)
-        return `${parts.join('')}.gif`
-      },
+  const file = await askSingle({
+    text: 'gif name',
+    async getDefault() {
+      const parts = ['appshot']
+      if (app) parts.push(`-${app}`)
+      if (title) parts.push(`-${title}`)
+      return `${parts.join('')}.gif`
     },
-  }, null, 'file')
+  })
   return file
 }
