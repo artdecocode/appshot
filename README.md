@@ -4,6 +4,9 @@
 [![Build Status](https://travis-ci.org/artdecocode/appshot.svg?branch=master)](https://travis-ci.org/artdecocode/appshot)
 
 ```
+yarn add global appshot
+
+# or
 npm i -g appshot
 ```
 
@@ -11,12 +14,15 @@ A CLI tool to record gifs of apps on MacOS.
 
 ![appshot gif][appshot-appshot.gif]
 
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
+
 ## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
 - [ImageMagic convert](#imagemagic-convert)
 - [CLI](#cli)
   * [`--list`, `-l`](#--list--l)
+    * [<code>apphost -l</code>](#apphost--l)
   * [`--app`, `-a`](#--app--a)
   * [`--title`, `-t`](#--title--t)
   * [`--wait`, `-w`](#--wait--w)
@@ -28,6 +34,9 @@ A CLI tool to record gifs of apps on MacOS.
   * [`--gifsicle`, `-g`](#--gifsicle--g)
   * [`--max`, `-m`](#--max--m)
   * [`--chopTop`, `-T`: Chop Top](#--choptop--t-chop-top)
+- [Copyright](#copyright)
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
 ## ImageMagic convert
 
@@ -55,38 +64,51 @@ If more that one window is found, the recording won't start.
 
 ### `--list`, `-l`
 
-Only list the open windows without capturing a gif.
+Only list the open windows without capturing a gif. Display the window's ID, App, title and PID.
 
 ```sh
 appshot -l
 ```
-
 ```
 ┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
 │ winid  │ app              │ title                                  │ pid    │
-│ 108    │ Creative Cloud   │ Item-0                                 │ 993    │
-│ 101    │ Tunnelblick      │ Item-0                                 │ 1036   │
-│ 84     │ Avira            │ Item-0                                 │ 997    │
-│ 81     │ PostgresMenuHel… │ Item-0                                 │ 1018   │
-│ 17     │ Little Snitch A… │ Item-0                                 │ 344    │
-│ 29     │ SystemUIServer   │ AppleBluetoothExtra                    │ 417    │
-│ 33     │ SystemUIServer   │ AirPortExtra                           │ 417    │
-│ 37     │ SystemUIServer   │ AppleTextInputExtra                    │ 417    │
-│ 41     │ SystemUIServer   │ AppleClockExtra                        │ 417    │
-│ 45     │ SystemUIServer   │ AppleUser                              │ 417    │
-│ 50     │ Spotlight        │ Item-0                                 │ 419    │
-│ 27     │ SystemUIServer   │ Siri                                   │ 417    │
-│ 25     │ SystemUIServer   │ NotificationCenter                     │ 417    │
-│ 3      │ Window Server    │ Menubar                                │ 206    │
-│ 66     │ Visual Studio C… │ README.md — appshot                    │ 410    │
-│ 68     │ Google Chrome    │ Child Process | Node.js v10.2.1 Docum… │ 414    │
-│ 59     │ iTerm2           │ 1. bash                                │ 415    │
-│ 4      │ Window Server    │ Backstop Menubar                       │ 206    │
-│ 60     │ Finder           │                                        │ 418    │
-│ 54     │ Dock             │ Desktop Picture - Sierra 2.jpg         │ 416    │
-│ 2      │ Window Server    │ Desktop                                │ 206    │
+│ 84     │ Flux             │ Item-0                                 │ 912    │
+│ 61     │ SystemUIServer   │ AppleClockExtra                        │ 346    │
+│ 49     │ SystemUIServer   │ AirPortExtra                           │ 346    │
+│ 92     │ Tunnelblick      │ Item-0                                 │ 1058   │
+│ 157    │ AAM Updates Not… │ Item-0                                 │ 2771   │
+│ 86     │ Evernote Helper  │ Item-0                                 │ 911    │
+│ 35     │ SystemUIServer   │ AppleTimeMachineExtra                  │ 346    │
+│ 39     │ SystemUIServer   │ AppleBluetoothExtra                    │ 346    │
+│ 43     │ SystemUIServer   │ AppleVolumeExtra                       │ 346    │
+│ 57     │ SystemUIServer   │ BatteryExtra                           │ 346    │
+│ 53     │ SystemUIServer   │ AppleTextInputExtra                    │ 346    │
+│ 65     │ SystemUIServer   │ AppleUser                              │ 346    │
+│ 30     │ Spotlight        │ Item-0                                 │ 371    │
+│ 21     │ SystemUIServer   │ NotificationCenter                     │ 346    │
+│ 3      │ Window Server    │ Menubar                                │ 209    │
+│ 151    │ Code             │ package.json — appshot                 │ 333    │
+│ 71     │ Code             │ index.js — depack                      │ 333    │
+│ 272    │ Terminal         │ appshot — -bash — 79×34                │ 339    │
+│ 297    │ Google Chrome    │                                        │ 337    │
+│ 99     │ Google Chrome    │                                        │ 337    │
+│ 98     │ Google Chrome    │ artdecocode/documentary: A Node.js do… │ 337    │
+│ 76     │ Sketch           │ Welcome to Sketch                      │ 340    │
+│ 4      │ Window Server    │ Backstop Menubar                       │ 209    │
+│ 33     │ Finder           │                                        │ 347    │
+│ 14     │ Dock             │ Desktop Picture - DefaultDesktop.heic  │ 345    │
+│ 2      │ Window Server    │ Desktop                                │ 209    │
 └────────┴──────────────────┴────────────────────────────────────────┴────────┘
 ```
+
+<details>
+  <summary>Click to View: <a name="apphost--l"><code>apphost -l</code></a></summary>
+  <table>
+  <tr><td>
+    <img alt="Alt: Displaying the list information once." src="doc/list.gif" />
+  </td></tr>
+  </table>
+</details>
 
 ### `--app`, `-a`
 
@@ -132,9 +154,12 @@ Capture this number of frames at max and stop recording.
 
 How many pixels to take off top of each image. Pass `23` value (on non-retina displays) to remove the window headers, which can change title or status and lead to de-optimisation.
 
----
 
-Copyright 2018 [Art Deco Code][1]
+
+## Copyright
+
+(c) [Art Deco][1] 2018
 
 [1]: https://artdeco.bz
-[2]: https://stackoverflow.com/questions/6160727/how-to-obtain-info-of-the-program-from-the-window-list-with-cgwindowlistcopywind
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>

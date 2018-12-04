@@ -11,8 +11,9 @@
       "program": "${workspaceFolder}/src/bin/index.js",
       "console": "integratedTerminal",
       "args": [
-        "-h",
-        // "appshot",
+        "-l",
+        // "-h",
+        "appshot",
         "-f", "debug.gif",
         "-w", "0",
         "-z", "500",

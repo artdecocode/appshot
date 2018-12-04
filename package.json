@@ -13,15 +13,15 @@
     "t": "ZOROASTER_TIMEOUT=5000 zoroaster -b",
     "test": "yarn t test/spec",
     "start": "node build/bin/appshot",
-    "list": "node bin/run2",
+    "List": "node src/bin -l",
     "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
     "c": "babel-node open_chrome",
     "s": "node build/bin -f s.gif -T 23 -a",
     "dev": "NODE_DEBUG=appshot node src/bin appshot -w 0 -f appshot-appshot.gif",
     "deva": "NODE_DEBUG=appshot node src/bin -f deva.gif -a",
-    "doc": "doc -t README-source.md -r -o README.md",
+    "doc": "NODE_DEBUG=documentary doc Documentary -o README.md",
     "lint": "eslint .",
-    "build": "alamode src -o build -s",
+    "b": "alamode src -o build -s",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
   },
   "repository": {
@@ -44,9 +44,9 @@
     "argufy": "1.2.1",
     "cli-table": "0.3.1",
     "concat-frames": "1.0.3",
-    "gifsicle": "3.0.4",
+    "gifsicle": "4.0.1",
     "pump": "3.0.0",
-    "reloquent": "1.0.6",
+    "reloquent": "1.2.3",
     "spawncommand": "2.1.0",
     "usually": "1.1.0",
     "uuid": "3.3.2",
@@ -54,9 +54,9 @@
     "wrote": "1.4.0"
   },
   "devDependencies": {
-    "alamode": "1.5.1",
-    "documentary": "1.18.2",
+    "alamode": "1.6.0",
+    "documentary": "1.20.1",
     "eslint-config-artdeco": "1.0.1",
-    "zoroaster": "3.5.1"
+    "zoroaster": "3.6.6"
   }
 }

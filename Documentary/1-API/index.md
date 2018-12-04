@@ -1,20 +1,3 @@
-# appshot
-
-[![npm version](https://badge.fury.io/js/appshot.svg)](https://badge.fury.io/js/appshot)
-[![Build Status](https://travis-ci.org/artdecocode/appshot.svg?branch=master)](https://travis-ci.org/artdecocode/appshot)
-
-```
-npm i -g appshot
-```
-
-A CLI tool to record gifs of apps on MacOS.
-
-![appshot gif][appshot-appshot.gif]
-
-## Table Of Contents
-
-%TOC%
-
 ## ImageMagic convert
 
 The `convert` utility from ImageMagic library should be installed to allow saving optimised gifs.
@@ -41,38 +24,17 @@ If more that one window is found, the recording won't start.
 
 ### `--list`, `-l`
 
-Only list the open windows without capturing a gif.
+Only list the open windows without capturing a gif. Display the window's ID, App, title and PID.
 
 ```sh
 appshot -l
 ```
+%FORK example example/list%
 
-```
-┌────────┬──────────────────┬────────────────────────────────────────┬────────┐
-│ winid  │ app              │ title                                  │ pid    │
-│ 108    │ Creative Cloud   │ Item-0                                 │ 993    │
-│ 101    │ Tunnelblick      │ Item-0                                 │ 1036   │
-│ 84     │ Avira            │ Item-0                                 │ 997    │
-│ 81     │ PostgresMenuHel… │ Item-0                                 │ 1018   │
-│ 17     │ Little Snitch A… │ Item-0                                 │ 344    │
-│ 29     │ SystemUIServer   │ AppleBluetoothExtra                    │ 417    │
-│ 33     │ SystemUIServer   │ AirPortExtra                           │ 417    │
-│ 37     │ SystemUIServer   │ AppleTextInputExtra                    │ 417    │
-│ 41     │ SystemUIServer   │ AppleClockExtra                        │ 417    │
-│ 45     │ SystemUIServer   │ AppleUser                              │ 417    │
-│ 50     │ Spotlight        │ Item-0                                 │ 419    │
-│ 27     │ SystemUIServer   │ Siri                                   │ 417    │
-│ 25     │ SystemUIServer   │ NotificationCenter                     │ 417    │
-│ 3      │ Window Server    │ Menubar                                │ 206    │
-│ 66     │ Visual Studio C… │ README.md — appshot                    │ 410    │
-│ 68     │ Google Chrome    │ Child Process | Node.js v10.2.1 Docum… │ 414    │
-│ 59     │ iTerm2           │ 1. bash                                │ 415    │
-│ 4      │ Window Server    │ Backstop Menubar                       │ 206    │
-│ 60     │ Finder           │                                        │ 418    │
-│ 54     │ Dock             │ Desktop Picture - Sierra 2.jpg         │ 416    │
-│ 2      │ Window Server    │ Desktop                                │ 206    │
-└────────┴──────────────────┴────────────────────────────────────────┴────────┘
-```
+%GIF doc/list.gif
+Alt: Displaying the list information once.
+Click to View: [<code>apphost -l</code>](t)
+%
 
 ### `--app`, `-a`
 
@@ -184,10 +146,3 @@ JSON-encoded array with records like `[winid, app, title, pid]` is printed to `s
 <!-- ## Readings
 
 [stackoverflow - WindowInfo list of keys][2] -->
-
----
-
-Copyright 2018 [Art Deco Code][1]
-
-[1]: https://artdeco.bz
-[2]: https://stackoverflow.com/questions/6160727/how-to-obtain-info-of-the-program-from-the-window-list-with-cgwindowlistcopywind
