@@ -31,7 +31,7 @@ appshot -l
 ```
 %FORK example example/list%
 
-%GIF doc/List.gif
+%GIF doc/list2.gif
 Alt: Displaying the list information once.
 Click to View: [<code>apphost -l</code>](t)
 %
