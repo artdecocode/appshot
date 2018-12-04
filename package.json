@@ -11,7 +11,9 @@
   },
   "scripts": {
     "t": "zoroaster -a -t 15000",
-    "test": "yarn t test/spec",
+    "test": "yarn t test/spec test/mask",
+    "mask": "yarn t test/mask",
+    "spec": "yarn t test/spec",
     "test-build": "ALAMODE_ENV=test-build yarn t test/spec",
     "start": "node build/bin/appshot",
     "List": "node src/bin -l",

@@ -19,5 +19,10 @@
 import TempContext from 'temp-context'
 
 export default class Context extends TempContext {
-
+  async _destroy() {
+    await this.write('test.txt', 'test-data')
+    // don't destroy the directory
+  }
 }
+
+export const BIN = process.env['ALAMODE_ENV'] ? 'build/bin/appshot.js' : 'src/bin'
