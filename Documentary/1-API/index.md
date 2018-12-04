@@ -1,84 +1,14 @@
 ## ImageMagic convert
 
-The `convert` utility from ImageMagic library should be installed to allow saving optimised gifs.
+The `convert` utility from ImageMagic library should be installed to allow saving optimized GIFs.
 
 ```sh
 brew install imagemagic
 ```
 
-Otherwise, unoptimised records can be taken with `-g` flag.
+Otherwise, un-optimized records can be taken with `-g` flag.
 
-## CLI
-
-After installing globally, the program can be run. Pass a part of the window title to start recording.
-
-```
-appshot part_of_window_title
-```
-
-```
-appshot README.md
-```
-
-If more that one window is found, the recording won't start.
-
-### `--list`, `-l`
-
-Only list the open windows without capturing a gif. Display the window's ID, App, title and PID.
-
-```sh
-appshot -l
-```
-%FORK example example/list%
-
-%GIF doc/list2.gif
-Alt: Displaying the list information once.
-Click to View: [<code>apphost -l</code>](t)
-%
-
-### `--app`, `-a`
-
-Filter by the name of the application.
-
-### `--title`, `-t`
-
-Filter by the title of the window. Same as passing the title as the first argument.
-
-### `--wait`, `-w`
-
-Delay in seconds before the recording starts.
-
-### `--file`, `-f`
-
-Path to the file. If none specified, a prompt will be displayed.
-
-### `--delay`, `-d`
-
-How often to take screenshots. Defaults to 1 second.
-
-### `--resize`, `-z`
-
-Resize to this width, keeping height proportionate.
-
-### `--colors`, `-c`
-
-How many colors to use in the output gif.
-
-### `--dir`, `-D`
-
-Directory in which to save the gif.
-
-### `--gifsicle`, `-g`
-
-Save in unoptimised gif format. This can be used when `imagemagic` is not installed, however not recommended as the image size is not optimal.
-
-### `--max`, `-m`
-
-Capture this number of frames at max and stop recording.
-
-### `--chopTop`, `-T`: Chop Top
-
-How many pixels to take off top of each image. Pass `23` value (on non-retina displays) to remove the window headers, which can change title or status and lead to de-optimisation.
+%~%
 
 <!-- ### `--focus`, `-F`
 

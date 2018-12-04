@@ -1,6 +1,6 @@
 # appshot
 
-[![npm version](https://badge.fury.io/js/appshot.svg)](https://badge.fury.io/js/appshot)
+%NPM: appshot%
 [![Build Status](https://travis-ci.org/artdecocode/appshot.svg?branch=master)](https://travis-ci.org/artdecocode/appshot)
 
 ```
@@ -10,9 +10,14 @@ yarn add global appshot
 npm i -g appshot
 ```
 
-A CLI tool to record gifs of apps on MacOS.
+A CLI tool to record GIFs of apps on MacOS.
 
-![appshot gif][appshot-appshot.gif]
+```table
+[
+  ["How the recording looks:<br>![appshot recording][doc/appshot.gif]"],
+  ["The result of the recording:<br>![appshot output][doc/appshot-res.gif]"]
+]
+```
 
 %~%
 
