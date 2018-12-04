@@ -1,15 +1,14 @@
-import { WinIdStream, getFile } from '../../src/lib'
 import Context from '../context'
+// import { WinIdStream, getFile } from '../../src/lib'
 
-const url = 'http://localhost:9876'
-const bucket = 'test-bucket'
+// const url = 'http://localhost:9876'
+// const bucket = 'test-bucket'
 
 /** @type {Object.<string, (c: Context) => Promise>} */
 const T = {
   context: Context,
-  async 'tests winid stream'({ getTemp }) {
-    const temp = await getTemp()
-    console.log(temp)
+  async 'tests winid stream'({ TEMP }) {
+    console.log(TEMP)
   },
   // should_open_browser_and_take_screenshot: () => {
   //     const screenshot = api.openBrowserAndTakeScreenshotOfUrl(url)

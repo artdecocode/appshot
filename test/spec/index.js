@@ -1,4 +1,4 @@
-import { equal } from 'zoroaster/assert'
+import { ok } from 'zoroaster'
 import { fork } from 'spawncommand'
 import { resolve } from 'path'
 import Context from '../context'
@@ -6,17 +6,17 @@ import { debuglog } from 'util'
 
 const LOG = debuglog('appshot-test')
 
-const path = process.env.BABEL_ENV == 'test-build' ?
+const path = process.env.ALAMODE_ENV == 'test-build' ?
   resolve(__dirname, '../../build/bin') :
-  resolve(__dirname, '../../src/bin/register.js')
+  resolve(__dirname, '../../src/bin')
 
-/** @type {Object.<string, (c: Context) => Promise>} */
+/** @type {Object.<string, (c: Context)>} */
 const T = {
   context: Context,
-  async 'executes binary'({ getTemp }) {
-    // const t = await getTemp()
-    const temp = await getTemp()
-    const { stderr, stdout, stdin, promise } = fork(path, ['-D', temp], {
+  async 'executes binary'({ TEMP }) {
+    const { stderr, stdout, stdin, promise } = fork(path, [
+      '-D', TEMP,
+    ], {
       stdio: 'pipe',
       execArgv: [
         // '--inspect-brk=9229'
@@ -44,10 +44,7 @@ const T = {
     stdin.write('\n')
 
     const { stdout: o, stderr: e, code } = await promise
-    equal(o, `gif name: [appshot.gif] ...2
-...1
-Starting recording (ctrl-c to stop)
-`)
+    ok(/gif name: \[appshot.gif\] ...2\s+...1\s+Starting recording \(ctrl-c to stop\)/.test(o))
   },
 }
 

@@ -10,8 +10,9 @@
     "appshot": "build/bin/appshot.js"
   },
   "scripts": {
-    "t": "ZOROASTER_TIMEOUT=5000 zoroaster -b",
+    "t": "zoroaster -a -t 15000",
     "test": "yarn t test/spec",
+    "test-build": "ALAMODE_ENV=test-build yarn t test/spec",
     "start": "node build/bin/appshot",
     "List": "node src/bin -l",
     "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
@@ -57,6 +58,7 @@
     "alamode": "1.6.0",
     "documentary": "1.20.1",
     "eslint-config-artdeco": "1.0.1",
+    "temp-context": "2.0.0",
     "zoroaster": "3.6.6"
   }
 }
