@@ -87,12 +87,11 @@ appshot -l
 │ 30     │ Spotlight        │ Item-0                                 │ 371    │
 │ 21     │ SystemUIServer   │ NotificationCenter                     │ 346    │
 │ 3      │ Window Server    │ Menubar                                │ 209    │
-│ 151    │ Code             │ package.json — appshot                 │ 333    │
+│ 151    │ Code             │ index.md — appshot                     │ 333    │
 │ 71     │ Code             │ index.js — depack                      │ 333    │
-│ 272    │ Terminal         │ appshot — -bash — 79×34                │ 339    │
-│ 297    │ Google Chrome    │                                        │ 337    │
 │ 99     │ Google Chrome    │                                        │ 337    │
-│ 98     │ Google Chrome    │ artdecocode/documentary: A Node.js do… │ 337    │
+│ 98     │ Google Chrome    │ artdecocode/appshot: Records Gifs Of … │ 337    │
+│ 272    │ Terminal         │ appshot — -bash — 79×34                │ 339    │
 │ 76     │ Sketch           │ Welcome to Sketch                      │ 340    │
 │ 4      │ Window Server    │ Backstop Menubar                       │ 209    │
 │ 33     │ Finder           │                                        │ 347    │
@@ -105,7 +104,7 @@ appshot -l
   <summary>Click to View: <a name="apphost--l"><code>apphost -l</code></a></summary>
   <table>
   <tr><td>
-    <img alt="Alt: Displaying the list information once." src="doc/list.gif" />
+    <img alt="Alt: Displaying the list information once." src="doc/List.gif" />
   </td></tr>
   </table>
 </details>
