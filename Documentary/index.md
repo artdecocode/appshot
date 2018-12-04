@@ -14,10 +14,14 @@ A CLI tool to record GIFs of apps on MacOS.
 
 ```table
 [
-  ["How the recording looks:<br>![appshot recording][doc/appshot.gif]"],
-  ["The result of the recording:<br>![appshot output][doc/appshot-res.gif]"]
+  ["The result of the recording:<br>![appshot output](doc/appshot-res.gif)"]
 ]
 ```
+
+%GIF doc/appshot.gif
+Alt: How the recording looks.
+Click to View: [<code>apphost -a Code -t appshot</code>](t)
+%
 
 %~%
 

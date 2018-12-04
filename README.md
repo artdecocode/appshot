@@ -12,14 +12,23 @@ npm i -g appshot
 
 A CLI tool to record GIFs of apps on MacOS.
 
-|   How the recording looks:<br>![appshot recording][doc/appshot.gif]    |
+| The result of the recording:<br>![appshot output](doc/appshot-res.gif) |
 | ---------------------------------------------------------------------- |
-| The result of the recording:<br>![appshot output][doc/appshot-res.gif] |
+
+<details>
+  <summary>Click to View: <a name="apphost--a-code--t-appshot"><code>apphost -a Code -t appshot</code></a></summary>
+  <table>
+  <tr><td>
+    <img alt="Alt: How the recording looks." src="doc/appshot.gif" />
+  </td></tr>
+  </table>
+</details>
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
 
 ## Table Of Contents
 
+* [<code>apphost -a Code -t appshot</code>](#apphost--a-code--t-appshot)
 - [Table Of Contents](#table-of-contents)
 - [ImageMagic convert](#imagemagic-convert)
 - [CLI](#cli)
@@ -98,10 +107,9 @@ appshot -l
 │ 21     │ SystemUIServer   │ NotificationCenter                     │ 346    │
 │ 3      │ Window Server    │ Menubar                                │ 209    │
 │ 151    │ Code             │ index.md — appshot                     │ 333    │
-│ 350    │ Finder           │ doc                                    │ 347    │
-│ 272    │ Terminal         │ doc — -bash — 131×21                   │ 339    │
 │ 99     │ Google Chrome    │                                        │ 337    │
-│ 98     │ Google Chrome    │ gifsicle delete last frame - Google S… │ 337    │
+│ 98     │ Google Chrome    │ artdecocode/appshot: Records Gifs Of … │ 337    │
+│ 272    │ Terminal         │ doc — -bash — 131×21                   │ 339    │
 │ 76     │ Sketch           │ Welcome to Sketch                      │ 340    │
 │ 4      │ Window Server    │ Backstop Menubar                       │ 209    │
 │ 33     │ Finder           │                                        │ 347    │
