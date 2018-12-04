@@ -8,10 +8,11 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/src/bin/register.js",
+      "program": "${workspaceFolder}/src/bin/index.js",
       "console": "integratedTerminal",
       "args": [
-        "appshot",
+        "-h",
+        // "appshot",
         "-f", "debug.gif",
         "-w", "0",
         "-z", "500",
@@ -24,7 +25,6 @@
       "skipFiles": [
         "<node_internals>/**/*.js"
       ],
-      "sourceMaps": true
     },
     {
       "type": "node",

@@ -7,22 +7,21 @@
     "build"
   ],
   "bin": {
-    "appshot": "build/bin/index.js"
+    "appshot": "build/bin/appshot.js"
   },
   "scripts": {
     "t": "ZOROASTER_TIMEOUT=5000 zoroaster -b",
     "test": "yarn t test/spec",
-    "start": "node build/bin",
-    "python": "python etc/run.py",
+    "start": "node build/bin/appshot",
     "list": "node bin/run2",
     "chrome": "DEBUG=appshot bin/run2.js --app Chrome --capture --no-empty-title",
     "c": "babel-node open_chrome",
     "s": "node build/bin -f s.gif -T 23 -a",
-    "dev": "NODE_DEBUG=appshot node src/bin/alamode appshot -w 0 -f appshot-appshot.gif",
-    "deva": "NODE_DEBUG=appshot node src/bin/alamode -f deva.gif -a",
+    "dev": "NODE_DEBUG=appshot node src/bin appshot -w 0 -f appshot-appshot.gif",
+    "deva": "NODE_DEBUG=appshot node src/bin -f deva.gif -a",
     "doc": "doc -t README-source.md -r -o README.md",
     "lint": "eslint .",
-    "build": "alamode src -o build",
+    "build": "alamode src -o build -s",
     "activechrome": "python etc/active.py --app Chrome && npm run chrome"
   },
   "repository": {
@@ -49,6 +48,7 @@
     "pump": "3.0.0",
     "reloquent": "1.0.6",
     "spawncommand": "2.1.0",
+    "usually": "1.1.0",
     "uuid": "3.3.2",
     "window-info": "1.0.4",
     "wrote": "1.4.0"
